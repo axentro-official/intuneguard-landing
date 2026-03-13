@@ -3,304 +3,755 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>IntuneGuard Solutions | Microsoft Security & Endpoint Management</title>
-<meta name="description" content="IntuneGuard Solutions provides Microsoft‑first endpoint management, identity protection and cloud security for growing businesses." />
+<meta name="description" content="IntuneGuard Solutions provides Microsoft-first endpoint management, identity protection and cloud security for growing businesses." />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
 :root{
---bg:#07111f;
---surface:#0d1b30;
---card:#12233f;
---line:rgba(255,255,255,.1);
---text:#eef4ff;
---muted:#9fb2cd;
---primary:#63b6ff;
---accent:#66ffbf;
---radius:18px;
---shadow:0 18px 45px rgba(0,0,0,.35);
---max:1180px;
+  --bg:#06101c;
+  --bg2:#091829;
+  --surface:rgba(13,27,48,.78);
+  --surface-2:rgba(255,255,255,.03);
+  --card:#11213b;
+  --line:rgba(255,255,255,.09);
+  --line-strong:rgba(255,255,255,.16);
+  --text:#eef4ff;
+  --muted:#9fb2cd;
+  --primary:#66b8ff;
+  --primary-2:#7be6ff;
+  --accent:#66ffbf;
+  --shadow:0 20px 50px rgba(0,0,0,.34);
+  --radius:20px;
+  --radius-lg:28px;
+  --max:1180px;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:
-radial-gradient(circle at 0% 0%,rgba(99,182,255,.16),transparent 28%),
-radial-gradient(circle at 100% 10%,rgba(102,255,191,.08),transparent 24%),
-linear-gradient(180deg,#07111f 0%,#050c18 100%);
-color:var(--text);
-line-height:1.6;
+  margin:0;
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  line-height:1.6;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(102,184,255,.17), transparent 26%),
+    radial-gradient(circle at 100% 10%, rgba(102,255,191,.08), transparent 22%),
+    linear-gradient(180deg, #06101c 0%, #071320 38%, #040b14 100%);
+  overflow-x:hidden;
 }
 
-.container{width:min(calc(100% - 40px),var(--max));margin:auto}
-section{padding:70px 0}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:36px 36px;
+  mask-image:radial-gradient(circle at center, black 42%, transparent 82%);
+  pointer-events:none;
+  z-index:-2;
+}
 
-h1{font-size:clamp(38px,5vw,64px);margin:0 0 16px;letter-spacing:-1.5px}
-h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
-p{color:var(--muted)}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+.container{width:min(calc(100% - 36px),var(--max));margin:auto}
+section{padding:82px 0;position:relative}
+
+.section-head{max-width:760px;margin:0 0 26px}
+.section-head h2{margin:0 0 10px;font-size:clamp(30px,4vw,46px);line-height:1.05;letter-spacing:-1px}
+.section-head p{margin:0;color:var(--muted);font-size:17px}
+
+aurora, .glow-orb { position:absolute; border-radius:50%; filter:blur(60px); opacity:.22; pointer-events:none; }
+.hero-orb-1{width:260px;height:260px;background:var(--primary);top:-70px;right:-70px}
+.hero-orb-2{width:180px;height:180px;background:var(--accent);bottom:-30px;left:-20px}
 
 /* NAV */
 nav{
-position:sticky;
-top:0;
-backdrop-filter:blur(12px);
-background:rgba(7,17,31,.8);
-border-bottom:1px solid var(--line);
-z-index:1000
+  position:sticky;
+  top:0;
+  z-index:1000;
+  backdrop-filter:blur(14px);
+  background:rgba(6,16,28,.76);
+  border-bottom:1px solid var(--line);
 }
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-.brand{display:flex;align-items:center;gap:12px;font-weight:700}
-.brand img{width:42px;height:42px;border-radius:12px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:78px;gap:18px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0;font-weight:800}
+.brand img{width:44px;height:44px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(135deg, rgba(102,184,255,.24), rgba(102,255,191,.18));padding:6px}
+.brand span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-links{display:flex;gap:22px;color:var(--muted);font-weight:600;font-size:14px}
+.nav-links a{position:relative;transition:.2s color ease}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-10px;width:0;height:2px;background:linear-gradient(135deg,var(--primary),var(--accent));transition:.25s}
+.nav-links a:hover,.nav-links a.active{color:var(--text)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
 
-.nav-links{display:flex;gap:24px;font-weight:500;color:var(--muted)}
-.nav-links a:hover{color:var(--text)}
+.menu-toggle{
+  display:none;
+  width:46px;height:46px;border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--text);font-size:18px;cursor:pointer
+}
+.mobile-menu{
+  display:none;
+  padding:0 0 18px;
+}
+.mobile-menu.open{display:grid;gap:10px}
+.mobile-menu a{
+  padding:14px 16px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(255,255,255,.03);
+  color:var(--muted);
+}
+.mobile-menu a:hover{color:var(--text)}
 
+/* BUTTONS */
 .btn{
-padding:12px 20px;
-border-radius:12px;
-font-weight:700;
-text-decoration:none;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-transition:.25s;
+  min-height:50px;
+  padding:0 20px;
+  border-radius:14px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:800;
+  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+  position:relative;
+  overflow:hidden;
 }
-
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:auto -20% -120% -20%;
+  height:180%;
+  background:linear-gradient(180deg, transparent, rgba(255,255,255,.22), transparent);
+  transform:translateY(0) rotate(8deg);
+  opacity:0;
+  transition:.35s ease;
+}
+.btn:hover::before{opacity:1;transform:translateY(-38%) rotate(8deg)}
+.btn:hover{transform:translateY(-2px)}
 .btn-primary{
-background:linear-gradient(135deg,var(--primary),var(--accent));
-color:#04111c;
-box-shadow:0 10px 28px rgba(99,182,255,.25)
+  color:#05101b;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  box-shadow:0 14px 34px rgba(102,184,255,.24);
 }
-
-.btn-primary:hover{transform:translateY(-2px) scale(1.02)}
+.btn-secondary{
+  color:var(--text);
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+}
+.btn-secondary:hover{border-color:var(--line-strong);box-shadow:0 10px 26px rgba(0,0,0,.22)}
 
 /* HERO */
-.hero{padding:110px 0 70px}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
-.hero p{font-size:18px}
-.hero-actions{display:flex;gap:14px;margin-top:22px}
-
+.hero{padding:112px 0 78px;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:34px;align-items:center}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:999px;
+  border:1px solid rgba(123,230,255,.18);
+  background:rgba(123,230,255,.06);
+  color:#d7f9ff;font-size:13px;font-weight:700;margin-bottom:18px
+}
+.hero h1{font-size:clamp(40px,5vw,70px);line-height:.98;letter-spacing:-2px;margin:0 0 16px;max-width:11ch}
+.hero p{font-size:18px;color:var(--muted);margin:0 0 24px;max-width:60ch}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.meta-pill{
+  padding:10px 14px;border-radius:999px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  color:var(--muted);font-size:14px;font-weight:600
+}
+.hero-visual{position:relative}
 .hero-card{
-background:var(--surface);
-border:1px solid var(--line);
-padding:24px;
-border-radius:var(--radius);
-box-shadow:var(--shadow);
-transition:.35s
+  position:relative;
+  padding:24px;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+  box-shadow:var(--shadow);
+  transform-style:preserve-3d;
+  transition:transform .18s ease-out, box-shadow .25s ease;
+  overflow:hidden;
 }
+.hero-card:hover{box-shadow:0 28px 60px rgba(0,0,0,.42)}
+.hero-card::after{
+  content:"";
+  position:absolute;inset:-1px;
+  border-radius:inherit;
+  padding:1px;
+  background:linear-gradient(135deg, rgba(102,184,255,.45), rgba(102,255,191,.18), transparent 62%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  pointer-events:none;
+}
+.dashboard{position:relative;z-index:2;display:grid;gap:16px}
+.panel{
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(6,16,28,.62)
+}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.panel-title{font-weight:800;font-size:15px}
+.status{
+  padding:7px 10px;border-radius:999px;
+  font-size:12px;font-weight:800;
+  color:#a6ffd8;background:rgba(102,255,191,.1);
+  border:1px solid rgba(102,255,191,.18)
+}
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mini-card{
+  padding:15px;border-radius:16px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);
+  transition:.28s ease
+}
+.mini-card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+.mini-card strong{display:block;font-size:22px;margin-bottom:4px}
+.mini-card span{font-size:13px;color:var(--muted)}
+.list-clean{display:grid;gap:10px;list-style:none;margin:0;padding:0}
+.list-clean li{padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);color:#deebfd}
 
-.hero-card:hover{transform:translateY(-6px)}
+/* TRUST */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.trust-card{
+  padding:18px;border-radius:18px;border:1px solid var(--line);
+  background:rgba(255,255,255,.025);box-shadow:var(--shadow);transition:.28s ease
+}
+.trust-card:hover{transform:translateY(-5px);border-color:var(--line-strong)}
+.trust-card strong{display:block;font-size:22px;margin-bottom:6px}
+.trust-card span{color:var(--muted);font-size:14px}
 
-/* SERVICES */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+/* GENERIC CARDS */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .card{
-background:var(--card);
-padding:24px;
-border-radius:var(--radius);
-border:1px solid var(--line);
-transition:.35s;
-box-shadow:var(--shadow)
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:var(--shadow);
+  transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  position:relative;
+  overflow:hidden;
 }
-
-.card:hover{transform:translateY(-6px)}
-
+.card::before{
+  content:"";
+  position:absolute;inset:auto -20% -70% auto;
+  width:120px;height:120px;border-radius:50%;
+  background:radial-gradient(circle, rgba(102,184,255,.25), transparent 70%);
+  opacity:0;transition:.3s ease;
+}
+.card:hover{transform:translateY(-8px);border-color:var(--line-strong);box-shadow:0 26px 55px rgba(0,0,0,.42)}
+.card:hover::before{opacity:1}
 .icon{
-width:50px;height:50px;border-radius:14px;
-display:grid;place-items:center;
-background:linear-gradient(135deg,var(--primary),var(--accent));
-color:#05101b;font-weight:800;margin-bottom:14px
+  width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+  margin-bottom:16px;font-size:24px;font-weight:800;color:#04111c;
+  background:linear-gradient(135deg,var(--primary),var(--accent))
 }
+.card h3{margin:0 0 10px;font-size:22px}
+.card p{margin:0;color:var(--muted)}
+.card ul{margin:14px 0 0;padding-left:18px;color:#e2edff}
+.card li+li{margin-top:8px}
 
-/* INDUSTRIES */
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+/* PAIN POINTS */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pain-card{
+  padding:20px;border-radius:18px;border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+  transition:.28s ease
+}
+.pain-card:hover{transform:translateY(-6px)}
+.pain-card strong{display:block;margin-bottom:8px}
+.pain-card p{margin:0;font-size:15px}
 
 /* PROCESS */
-.timeline{display:grid;gap:18px}
-.step{
-display:grid;
-grid-template-columns:60px 1fr;
-background:var(--surface);
-padding:18px;border-radius:var(--radius);
-border:1px solid var(--line)
+.timeline{display:grid;gap:14px}
+.timeline-item{
+  display:grid;grid-template-columns:64px 1fr;gap:14px;
+  padding:18px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.025);
+  transition:.26s ease
 }
-.step-num{
-width:42px;height:42px;border-radius:12px;
-background:linear-gradient(135deg,var(--primary),var(--accent));
-display:grid;place-items:center;font-weight:800;color:#04111c
+.timeline-item:hover{transform:translateX(4px);border-color:var(--line-strong)}
+.step-num{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-weight:900;color:#04111c;background:linear-gradient(135deg,var(--primary),var(--accent))}
+.step-copy h3{margin:0 0 6px;font-size:18px}
+.step-copy p{margin:0;color:var(--muted)}
+
+/* TESTIMONIALS */
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.quote{
+  padding:22px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.03);box-shadow:var(--shadow);
+  transition:.28s ease
 }
+.quote:hover{transform:translateY(-6px)}
+.quote p{margin:0 0 16px;color:#dce8fc}
+.quote strong{display:block}
+.quote span{color:var(--muted);font-size:14px}
 
 /* PRICING */
-.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.price{font-size:40px;font-weight:800;margin:10px 0}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.price-card{position:relative}
+.price-card.featured{transform:translateY(-6px)}
+.price-card .tag{
+  position:absolute;top:16px;right:16px;padding:8px 10px;border-radius:999px;
+  background:linear-gradient(135deg,var(--accent),var(--primary-2));color:#04111c;font-size:12px;font-weight:900
+}
+.price{font-size:42px;font-weight:900;line-height:1;margin:10px 0}
+.price small{font-size:14px;color:var(--muted);font-weight:700}
+.price-note{margin-top:14px;color:var(--muted);font-size:14px}
 
 /* FAQ */
+.faq{display:grid;gap:14px}
 .faq-item{
-border:1px solid var(--line);
-border-radius:var(--radius);
-padding:18px;
-background:var(--surface);
-cursor:pointer
+  border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.03);overflow:hidden;
+  transition:.25s ease
 }
-
-.faq-answer{display:none;margin-top:10px}
+.faq-item:hover{border-color:var(--line-strong)}
+.faq-question{
+  width:100%;padding:18px 20px;border:0;background:transparent;color:var(--text);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;font:inherit;font-weight:700;cursor:pointer
+}
+.faq-icon{transition:.25s ease;color:var(--muted)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease, padding .35s ease;padding:0 20px}
+.faq-item.open .faq-answer{max-height:180px;padding:0 20px 18px}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--text)}
+.faq-answer p{margin:0}
 
 /* CTA */
 .cta{
-background:linear-gradient(135deg,rgba(99,182,255,.12),rgba(102,255,191,.08));
-padding:40px;border-radius:var(--radius);
-border:1px solid var(--line);
-display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center
+  display:grid;grid-template-columns:1.08fr .92fr;gap:20px;align-items:center;
+  padding:34px;border-radius:28px;border:1px solid rgba(123,230,255,.16);
+  background:linear-gradient(135deg, rgba(102,184,255,.12), rgba(102,255,191,.08));box-shadow:var(--shadow)
 }
+.contact-card{
+  padding:22px;border-radius:20px;border:1px solid var(--line);background:rgba(6,16,28,.5)
+}
+.contact-list{display:grid;gap:12px;color:var(--muted)}
+.contact-list strong,.contact-list a{color:var(--text)}
+.contact-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
 
 /* FOOTER */
-footer{padding:50px 0;color:var(--muted)}
-.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-
-footer a{color:var(--muted)}
-footer a:hover{color:var(--text)}
-
-/* MOBILE */
-@media (max-width:900px){
-.hero-grid,.pricing,.grid-3,.footer-grid,.grid-2{grid-template-columns:1fr}
-.nav-links{display:none}
+footer{padding:30px 0 44px;color:var(--muted)}
+.footer-grid{display:grid;grid-template-columns:1.2fr .9fr .9fr .9fr;gap:18px;margin-bottom:20px}
+.footer-col{
+  padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)
 }
-</style></head><body><nav>
-<div class="container nav-inner">
-<div class="brand">
-<img src="assets/logo.png" alt="logo">
-<span>IntuneGuard</span>
+.footer-col h4{margin:0 0 10px;color:var(--text);font-size:15px}
+.footer-col ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:18px;border-top:1px solid rgba(255,255,255,.07);font-size:13px}
+
+/* FLOATING */
+.whatsapp-float{
+  position:fixed;right:18px;bottom:18px;z-index:1200;
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#25d366,#7dffbc);color:#04111c;font-size:24px;font-weight:900;
+  box-shadow:0 18px 40px rgba(37,211,102,.35);transition:.25s ease
+}
+.whatsapp-float:hover{transform:translateY(-4px) scale(1.04)}
+.sticky-cta{
+  position:fixed;left:18px;bottom:18px;z-index:1200;
+  padding:12px 16px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(6,16,28,.78);backdrop-filter:blur(12px);box-shadow:var(--shadow);
+  display:flex;align-items:center;gap:10px;color:var(--text);font-weight:700;transition:.25s ease
+}
+.sticky-cta:hover{transform:translateY(-4px)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease, transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* CURSOR GLOW */
+.cursor-glow{
+  position:fixed;left:0;top:0;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle, rgba(102,184,255,.11), rgba(102,255,191,.04) 35%, transparent 70%);
+  transform:translate(-50%,-50%);pointer-events:none;z-index:-1;transition:transform .08s linear
+}
+
+@media (max-width:1080px){
+  .hero-grid,.cta,.footer-grid{grid-template-columns:1fr}
+  .grid-3,.pricing,.testimonial-grid,.pain-grid,.trust-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:860px){
+  .nav-links,.nav-cta{display:none}
+  .menu-toggle{display:grid;place-items:center}
+  .grid-3,.grid-2,.pricing,.testimonial-grid,.pain-grid,.trust-grid{grid-template-columns:1fr}
+  .hero{padding-top:82px}
+  .hero h1{max-width:none}
+  .timeline-item{grid-template-columns:1fr}
+  .sticky-cta{left:14px;bottom:86px}
+}
+
+@media (max-width:560px){
+  section{padding:68px 0}
+  .container{width:min(calc(100% - 24px),var(--max))}
+  .hero-actions,.contact-actions{flex-direction:column}
+  .btn{width:100%}
+  .sticky-cta{display:none}
+}
+</style></head>
+<body>
+<div class="cursor-glow" id="cursorGlow"></div><nav>
+  <div class="container nav-inner">
+    <a href="#home" class="brand" aria-label="IntuneGuard home">
+      <img src="assets/logo.png" alt="IntuneGuard logo" onerror="this.style.display='none'">
+      <span>IntuneGuard Solutions</span>
+    </a><div class="nav-links" id="navLinks">
+  <a href="#services">Services</a>
+  <a href="#industries">Industries</a>
+  <a href="#process">Process</a>
+  <a href="#pricing">Packages</a>
+  <a href="#faq">FAQ</a>
+  <a href="#contact">Contact</a>
 </div>
-<div class="nav-links">
-<a href="#services">Services</a>
-<a href="#industries">Industries</a>
-<a href="#process">Process</a>
-<a href="#pricing">Packages</a>
-<a href="#contact">Contact</a>
+
+<div class="nav-cta">
+  <a class="btn btn-primary" href="#contact">Book Consultation</a>
 </div>
-<a class="btn btn-primary" href="#contact">Book Consultation</a>
-</div>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+
+  </div>  <div class="container mobile-menu" id="mobileMenu">
+    <a href="#services">Services</a>
+    <a href="#industries">Industries</a>
+    <a href="#process">Process</a>
+    <a href="#pricing">Packages</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+  </div>
 </nav><header class="hero" id="home">
-<div class="container hero-grid">
-<div>
-<h1>Secure your devices, identities and cloud operations.</h1>
-<p>IntuneGuard helps growing companies deploy Microsoft‑first security operations using Intune, Entra ID and Microsoft Defender.</p>
-<div class="hero-actions">
-<a class="btn btn-primary" href="#contact">Free Security Assessment</a>
-<a class="btn" href="#services">Explore Services</a>
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">Microsoft Intune • Entra ID • Defender</div>
+      <h1>Secure your devices, identities and cloud operations.</h1>
+      <p>IntuneGuard helps growing companies deploy Microsoft-first security operations using Intune, Entra ID and Microsoft Defender with a cleaner, more controlled delivery model.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Free Security Assessment</a>
+        <a class="btn btn-secondary" href="#services">Explore Services</a>
+      </div>
+      <div class="hero-meta">
+        <span class="meta-pill">Built for 5–200 employee teams</span>
+        <span class="meta-pill">Fast rollout and structured support</span>
+        <span class="meta-pill">Microsoft-first security operations</span>
+      </div>
+    </div><div class="hero-visual reveal">
+  <div class="hero-card" id="heroTilt">
+    <div class="glow-orb hero-orb-1"></div>
+    <div class="glow-orb hero-orb-2"></div>
+    <div class="dashboard">
+      <div class="panel">
+        <div class="panel-head">
+          <span class="panel-title">Security Operations Snapshot</span>
+          <span class="status">Protected</span>
+        </div>
+        <div class="mini-grid">
+          <div class="mini-card"><strong>98.4%</strong><span>Policy compliance visibility</span></div>
+          <div class="mini-card"><strong>MFA</strong><span>Identity hardening enforced</span></div>
+          <div class="mini-card"><strong>Autopilot</strong><span>Secure onboarding workflow</span></div>
+          <div class="mini-card"><strong>Defender</strong><span>Threat monitoring enabled</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><span class="panel-title">Core Delivery Scope</span></div>
+        <ul class="list-clean">
+          <li>Device enrollment, compliance policies and application governance</li>
+          <li>Identity security with MFA, Conditional Access and SSO</li>
+          <li>Microsoft Defender deployment and incident visibility</li>
+          <li>Ongoing support, reporting and posture improvement</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
-</div><div class="hero-card">
-<strong>Microsoft Security Stack</strong>
-<ul>
-<li>Endpoint Management with Intune</li>
-<li>Identity Security with Entra ID</li>
-<li>Threat Protection with Defender</li>
-<li>Secure Device Onboarding</li>
-</ul>
+
+  </div>
+</header><section>
+  <div class="container trust-grid">
+    <div class="trust-card reveal"><strong>Microsoft Stack</strong><span>Focused delivery around Intune, Entra ID and Defender.</span></div>
+    <div class="trust-card reveal"><strong>SME Fit</strong><span>Designed for growing businesses without large internal security teams.</span></div>
+    <div class="trust-card reveal"><strong>Operational Clarity</strong><span>Structured onboarding, defined scope and cleaner support workflow.</span></div>
+    <div class="trust-card reveal"><strong>Fast Execution</strong><span>Practical implementation without unnecessary complexity.</span></div>
+  </div>
+</section><section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Core Services</h2>
+      <p>Focused Microsoft ecosystem security services for businesses that need stronger control across devices, identities and endpoints.</p>
+    </div><div class="grid-3">
+  <article class="card reveal">
+    <div class="icon">🖥</div>
+    <h3>Microsoft Intune</h3>
+    <p>Unified endpoint management across Windows, macOS, Android and iOS with stronger compliance and onboarding control.</p>
+    <ul>
+      <li>Device enrollment and policy baselines</li>
+      <li>Compliance and access enforcement</li>
+      <li>App deployment and management</li>
+      <li>Windows Autopilot setup</li>
+    </ul>
+  </article>
+
+  <article class="card reveal">
+    <div class="icon">🔐</div>
+    <h3>Identity Protection</h3>
+    <p>Microsoft Entra ID security setup with practical controls for access, sign-in protection and identity governance.</p>
+    <ul>
+      <li>MFA rollout</li>
+      <li>Conditional Access design</li>
+      <li>Single Sign-On enablement</li>
+      <li>Identity monitoring and reviews</li>
+    </ul>
+  </article>
+
+  <article class="card reveal">
+    <div class="icon">🛡</div>
+    <h3>Endpoint Security</h3>
+    <p>Microsoft Defender deployment for visibility, threat response and stronger endpoint security posture.</p>
+    <ul>
+      <li>Defender onboarding</li>
+      <li>Threat monitoring</li>
+      <li>Security recommendations</li>
+      <li>Incident follow-up workflows</li>
+    </ul>
+  </article>
 </div>
-</div>
-</header><section id="services">
-<div class="container">
-<h2>Core Services</h2>
-<p>Focused Microsoft ecosystem security services for SMEs.</p><div class="grid-3">
-<div class="card">
-<div class="icon">🖥</div>
-<h3>Microsoft Intune</h3>
-<p>Unified device management across Windows, macOS, Android and iOS.</p>
-</div><div class="card">
-<div class="icon">🔐</div>
-<h3>Identity Protection</h3>
-<p>MFA, Conditional Access and Entra ID security configuration.</p>
-</div><div class="card">
-<div class="icon">🛡</div>
-<h3>Endpoint Security</h3>
-<p>Microsoft Defender deployment with monitoring and response.</p>
-</div>
-</div>
-</div>
+
+  </div>
+</section><section>
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>What IntuneGuard helps solve</h2>
+      <p>Position the company around real business pain points instead of generic IT language.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal"><strong>Unmanaged devices</strong><p>Bring scattered laptops and endpoints under controlled enrollment, compliance and deployment policies.</p></div>
+      <div class="pain-card reveal"><strong>Weak identity controls</strong><p>Reduce exposure created by weak sign-in security, poor MFA adoption and inconsistent access rules.</p></div>
+      <div class="pain-card reveal"><strong>Low endpoint visibility</strong><p>Gain better visibility into device posture, threats and the security status of operational endpoints.</p></div>
+    </div>
+  </div>
 </section><section id="industries">
-<div class="container">
-<h2>Industries We Support</h2>
-<div class="grid-2">
-<div class="card"><strong>Healthcare</strong><p>Protect sensitive medical systems and staff devices.</p></div>
-<div class="card"><strong>Law Firms</strong><p>Secure client data and control access to internal systems.</p></div>
-<div class="card"><strong>Startups</strong><p>Build strong security foundations from day one.</p></div>
-<div class="card"><strong>Logistics</strong><p>Secure distributed teams and operational devices.</p></div>
-</div>
-</div>
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Industries We Support</h2>
+      <p>The offer is designed for practical B2B buyers in regulated or operationally sensitive environments.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card reveal"><h3>Healthcare</h3><p>Protect sensitive systems, user identities and staff devices handling medical operations.</p></div>
+      <div class="card reveal"><h3>Law Firms</h3><p>Strengthen client confidentiality controls and access governance across business endpoints.</p></div>
+      <div class="card reveal"><h3>Startups</h3><p>Build a secure Microsoft-first foundation early without hiring a full internal security function.</p></div>
+      <div class="card reveal"><h3>Logistics</h3><p>Standardize security across distributed teams, operational devices and shared access workflows.</p></div>
+    </div>
+  </div>
 </section><section id="process">
-<div class="container">
-<h2>How Engagement Works</h2>
-<div class="timeline">
-<div class="step"><div class="step-num">1</div><div><strong>Discovery Call</strong><p>Understand environment and security gaps.</p></div></div>
-<div class="step"><div class="step-num">2</div><div><strong>Security Assessment</strong><p>Analyze risk exposure and required setup.</p></div></div>
-<div class="step"><div class="step-num">3</div><div><strong>Implementation</strong><p>Deploy Microsoft security stack.</p></div></div>
-<div class="step"><div class="step-num">4</div><div><strong>Ongoing Support</strong><p>Monitoring, updates and security improvements.</p></div></div>
-</div>
-</div>
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>How Engagement Works</h2>
+      <p>A cleaner commercial flow makes the service easier to understand and easier to buy.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal"><div class="step-num">1</div><div class="step-copy"><h3>Discovery Call</h3><p>Understand the Microsoft environment, business priorities and current security gaps.</p></div></div>
+      <div class="timeline-item reveal"><div class="step-num">2</div><div class="step-copy"><h3>Security Assessment</h3><p>Map risks, define implementation scope and identify the right delivery model.</p></div></div>
+      <div class="timeline-item reveal"><div class="step-num">3</div><div class="step-copy"><h3>Implementation</h3><p>Deploy Intune, identity controls and endpoint protection with a structured rollout approach.</p></div></div>
+      <div class="timeline-item reveal"><div class="step-num">4</div><div class="step-copy"><h3>Ongoing Support</h3><p>Provide monitoring, updates and iterative security improvements over time.</p></div></div>
+    </div>
+  </div>
+</section><section>
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>What prospects should feel</h2>
+      <p>Use this section as polished social proof placeholders until real testimonials are available.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="quote reveal"><p>“IntuneGuard helped us move from scattered device management to a cleaner, more controlled Microsoft environment.”</p><strong>Operations Lead</strong><span>Healthcare company</span></div>
+      <div class="quote reveal"><p>“The value was clarity. The rollout was structured, practical and easier to manage than typical IT support engagements.”</p><strong>Managing Partner</strong><span>Law practice</span></div>
+      <div class="quote reveal"><p>“We needed security maturity without building an internal team from scratch. The model made sense for our stage.”</p><strong>Founder</strong><span>Growth-stage startup</span></div>
+    </div>
+  </div>
 </section><section id="pricing">
-<div class="container">
-<h2>Service Packages</h2>
-<div class="pricing">
-<div class="card">
-<h3>Starter</h3>
-<div class="price">$299</div>
-<p>Basic security setup for small teams.</p>
-</div><div class="card">
-<h3>Growth</h3>
-<div class="price">$699</div>
-<p>Full device, identity and endpoint coverage.</p>
-</div><div class="card">
-<h3>Enterprise</h3>
-<div class="price">Custom</div>
-<p>Advanced deployments and security consulting.</p>
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Service Packages</h2>
+      <p>Commercial blocks that look presentation-ready now and can be replaced later with final numbers or custom quote language.</p>
+    </div>
+    <div class="pricing">
+      <article class="card price-card reveal">
+        <h3>Starter</h3>
+        <div class="price">$299 <small>/ month</small></div>
+        <p>Basic security setup for small teams entering Microsoft device and identity management.</p>
+      </article><article class="card price-card featured reveal">
+    <span class="tag">Most Popular</span>
+    <h3>Growth</h3>
+    <div class="price">$699 <small>/ month</small></div>
+    <p>Balanced package for device, identity and endpoint coverage in active SME environments.</p>
+  </article>
+
+  <article class="card price-card reveal">
+    <h3>Enterprise</h3>
+    <div class="price">Custom</div>
+    <p>Advanced deployments, consulting and ongoing support for larger or more complex environments.</p>
+  </article>
 </div>
-</div>
-</div>
+<div class="price-note reveal">Replace pricing later with your actual offer or convert all packages to custom quotes only.</div>
+
+  </div>
+</section><section id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Frequently Asked Questions</h2>
+      <p>Concise answers that keep the landing page informative without adding clutter.</p>
+    </div>
+    <div class="faq">
+      <div class="faq-item reveal">
+        <button class="faq-question"><span>Do you work only with Microsoft environments?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Yes. The positioning is Microsoft-first so the service remains specialized, clear and commercially focused.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question"><span>What size of company is the best fit?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>The strongest fit is usually SMEs in the 5 to 200 employee range that need stronger controls without building a full internal security team.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question"><span>Do you offer ongoing support?</span><span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Yes. The site supports both one-time implementation projects and recurring managed support models.</p></div>
+      </div>
+    </div>
+  </div>
 </section><section id="contact">
-<div class="container">
-<div class="cta">
-<div>
-<h2>Start securing your Microsoft environment today.</h2>
-<p>Schedule a consultation and receive a security assessment.</p>
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <div class="eyebrow">Next step</div>
+        <h2 style="margin:0 0 10px">Start securing your Microsoft environment today.</h2>
+        <p style="margin:0;color:var(--muted)">Schedule a consultation and use the landing page as a clean front door for discovery calls, assessments and proposals.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:hello@intuneguard.com">Contact Us</a>
+          <a class="btn btn-secondary" href="https://wa.me/201000000000" target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+      </div><div class="contact-card">
+    <div class="contact-list">
+      <div><strong>Email:</strong> <a href="mailto:hello@intuneguard.com">hello@intuneguard.com</a></div>
+      <div><strong>Phone:</strong> <a href="tel:+201000000000">+20 100 000 0000</a></div>
+      <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/intuneguard" target="_blank" rel="noreferrer">linkedin.com/company/intuneguard</a></div>
+      <div><strong>Location:</strong> Cairo, Egypt</div>
+    </div>
+  </div>
 </div>
-<a class="btn btn-primary" href="mailto:hello@intuneguard.com">Contact Us</a>
-</div>
-</div>
+
+  </div>
 </section><footer>
-<div class="container footer-grid">
-<div>
-<strong>IntuneGuard</strong>
-<p>Microsoft security and endpoint management for SMEs.</p>
-</div><div>
-<strong>Services</strong>
-<p>Intune</p>
-<p>Identity</p>
-<p>Defender</p>
-</div><div>
-<strong>Company</strong>
-<p>About</p>
-<p>Process</p>
-<p>Contact</p>
-</div><div>
-<strong>Contact</strong>
-<p>hello@intuneguard.com</p>
-<p>+20 100 000 0000</p>
-</div>
-</div><div class="container" style="margin-top:30px;font-size:13px;color:var(--muted)">
-© 2026 IntuneGuard Solutions
-</div>
-</footer><script>
-// FAQ toggle
-const faqs=document.querySelectorAll('.faq-item');
-faqs.forEach(f=>{
-f.addEventListener('click',()=>{
-const ans=f.querySelector('.faq-answer');
-if(!ans)return;
-ans.style.display=ans.style.display==='block'?'none':'block';
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>IntuneGuard Solutions</h4>
+        <p>Microsoft security and endpoint management for SMEs that need stronger operational control.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Intune</a></li>
+          <li><a href="#services">Identity Protection</a></li>
+          <li><a href="#services">Endpoint Security</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@intuneguard.com">hello@intuneguard.com</a></li>
+          <li><a href="tel:+201000000000">+20 100 000 0000</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 IntuneGuard Solutions</div>
+      <div>Built for GitHub Pages</div>
+    </div>
+  </div>
+</footer><a class="whatsapp-float" href="https://wa.me/201000000000" target="_blank" rel="noreferrer" aria-label="WhatsApp">✆</a> <a class="sticky-cta" href="#contact">Start a consultation</a>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+menuToggle?.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+  menuToggle.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
 });
+
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    menuToggle.textContent = '☰';
+  });
 });
+
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+  const btn = item.querySelector('.faq-question');
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    faqItems.forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.14 });
+reveals.forEach(el => revealObserver.observe(el));
+
+const sections = document.querySelectorAll('section[id], header[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const setActiveLink = () => {
+  let current = 'home';
+  sections.forEach(section => {
+    const top = section.offsetTop - 120;
+    if (scrollY >= top) current = section.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+  });
+};
+window.addEventListener('scroll', setActiveLink);
+setActiveLink();
+
+const heroTilt = document.getElementById('heroTilt');
+if (heroTilt && window.innerWidth > 900) {
+  heroTilt.addEventListener('mousemove', (e) => {
+    const rect = heroTilt.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateY = ((x / rect.width) - 0.5) * 10;
+    const rotateX = ((y / rect.height) - 0.5) * -10;
+    heroTilt.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+  heroTilt.addEventListener('mouseleave', () => {
+    heroTilt.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+  });
+}
+
+const cursorGlow = document.getElementById('cursorGlow');
+if (cursorGlow && window.innerWidth > 900) {
+  window.addEventListener('mousemove', (e) => {
+    cursorGlow.style.transform = `translate(${e.clientX - 130}px, ${e.clientY - 130}px)`;
+  });
+} else if (cursorGlow) {
+  cursorGlow.style.display = 'none';
+}
 </script></body>
 </html>
