@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IntuneGuard Solutions | Secure Microsoft Cloud, Identity & Devices</title>
+  <meta name="description" content="IntuneGuard Solutions helps SMEs secure devices, identities, and cloud operations using Microsoft Intune, Entra ID, Azure, and Microsoft Defender." />
+  <meta name="theme-color" content="#081221" />
+
+  <meta property="og:title" content="IntuneGuard Solutions" />
+  <meta property="og:description" content="Microsoft-first device management, identity protection, and endpoint security for growing businesses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-cover.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #06111d;
+      --bg-2: #091829;
+      --surface: rgba(12, 24, 41, 0.82);
+      --surface-2: rgba(255, 255, 255, 0.03);
+      --line: rgba(255, 255, 255, 0.09);
+      --line-strong: rgba(255, 255, 255, 0.18);
+      --text: #edf4ff;
+      --muted: #9db0ca;
+      --primary: #5cb3ff;
+      --primary-2: #78e7ff;
+      --accent: #61ffbd;
+      --warning: #ffcf66;
+      --danger: #ff7f7f;
+      --radius: 22px;
+      --radius-lg: 30px;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(92, 179, 255, 0.18), transparent 26%),
+        radial-gradient(circle at 100% 10%, rgba(97, 255, 189, 0.08), transparent 22%),
+        linear-gradient(180deg, #06111d 0%, #071523 42%, #040b14 100%);
+      line-height: 1.65;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 38px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -1px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(120, 231, 255, 0.18);
+      background: rgba(120, 231, 255, 0.06);
+      color: #d4f9ff;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(6, 17, 29, 0.76);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-inner {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(135deg, rgba(92,179,255,0.24), rgba(97,255,189,0.18));
+      padding: 6px;
+      box-shadow: 0 12px 30px rgba(92,179,255,0.18);
+    }
+
+    .brand-fallback {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #05101b;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 12px 30px rgba(92,179,255,0.18);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.1;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      transition: transform 0.22s ease, border-color 0.22s ease, opacity 0.22s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      color: #05101a;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 18px 36px rgba(92,179,255,0.26);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+      border-color: var(--line);
+    }
+
+    .hero {
+      padding: 76px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: clamp(40px, 5vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      max-width: 11ch;
+    }
+
+    .hero p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 64ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .meta-pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -90px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(92,179,255,0.24), transparent 70%);
+      pointer-events: none;
+    }
+
+    .dashboard {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(6,17,29,0.62);
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .panel-title {
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .status {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #a9ffd7;
+      background: rgba(97,255,189,0.1);
+      border: 1px solid rgba(97,255,189,0.18);
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 4px;
+    }
+
+    .mini-card span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .list-clean {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .list-clean li {
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+      color: #dfebfd;
+      font-size: 14px;
+    }
+
+    .trust-bar {
+      padding-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .trust-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--line);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      margin-bottom: 16px;
+      font-size: 24px;
+      background: linear-gradient(135deg, rgba(92,179,255,0.18), rgba(97,255,189,0.12));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .card p {
+      margin: 0 0 14px;
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #deebfc;
+    }
+
+    .card li + li { margin-top: 7px; }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 20px;
+    }
+
+    .industry-grid, .value-grid, .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .info-box {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--line);
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 17px;
+    }
+
+    .info-box span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .step {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #05101a;
+      background: linear-gradient(135deg, var(--accent), var(--primary-2));
+    }
+
+    .step-copy h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .step-copy p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .price-card {
+      position: relative;
+    }
+
+    .price-card.featured {
+      transform: translateY(-6px);
+      border-color: rgba(120, 231, 255, 0.22);
+    }
+
+    .tag {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      color: #05101a;
+      background: linear-gradient(135deg, var(--accent), var(--primary-2));
+    }
+
+    .price {
+      margin: 8px 0 10px;
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .price small {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .pricing-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .faq {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.025);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+      padding: 32px;
+      border-radius: 28px;
+      border: 1px solid rgba(120, 231, 255, 0.18);
+      background: linear-gradient(135deg, rgba(92,179,255,0.12), rgba(97,255,189,0.08));
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(6,17,29,0.54);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .contact-list strong { color: var(--text); }
+    .contact-list a { color: var(--text); }
+
+    .footer {
+      padding: 28px 0 44px;
+      color: var(--muted);
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 0.9fr 0.9fr;
+      gap: 18px;
+      padding: 0 0 24px;
+    }
+
+    .footer-col {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .footer-col h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .footer-col p,
+    .footer-col a,
+    .footer-col li {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .placeholder-note {
+      font-size: 12px;
+      color: var(--warning);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid, .split, .cta, .footer-main { grid-template-columns: 1fr; }
+      .grid-3, .pricing, .grid-4, .trust-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { display: none; }
+      .hero { padding-top: 56px; }
+      .grid-3, .pricing, .grid-4, .trust-bar, .industry-grid, .value-grid, .audience-grid, .mini-grid { grid-template-columns: 1fr; }
+      .hero h1 { max-width: none; }
+      .timeline-item { grid-template-columns: 1fr; }
+      .step { width: 44px; height: 44px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand" aria-label="IntuneGuard Solutions Home">
+        <img src="assets/logo.png" alt="IntuneGuard Solutions Logo" class="brand-logo" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex';" />
+        <span class="brand-fallback">IG</span>
+        <span class="brand-copy">
+          <strong>IntuneGuard Solutions</strong>
+          <span>Microsoft Security • Identity • Device Management</span>
+        </span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#industries">Industries</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Packages</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a class="btn btn-primary" href="#contact">Book a Discovery Call</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Microsoft Intune • Entra ID • Azure • Defender</div>
+        <h1>Protect your business with Microsoft-first security operations.</h1>
+        <p>
+          IntuneGuard Solutions helps small and mid-sized organizations secure endpoints, strengthen identity controls,
+          and standardize cloud operations with a practical Microsoft security stack.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Get a Free Assessment</a>
+          <a class="btn btn-secondary" href="#services">Explore Services</a>
+        </div>
+
+        <div class="meta-row">
+          <span class="meta-pill">Built for 5–200 employee teams</span>
+          <span class="meta-pill">Proposal within 48 hours</span>
+          <span class="meta-pill">Remote response target: 2–4 hours</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="dashboard">
+          <div class="panel">
+            <div class="panel-head">
+              <span class="panel-title">Security Operations Snapshot</span>
+              <span class="status">Protected</span>
+            </div>
+            <div class="mini-grid">
+              <div class="mini-card">
+                <strong>98.4%</strong>
+                <span>Policy compliance visibility</span>
+              </div>
+              <div class="mini-card">
+                <strong>MFA</strong>
+                <span>Identity hardening enforced</span>
+              </div>
+              <div class="mini-card">
+                <strong>Autopilot</strong>
+                <span>Faster secure onboarding</span>
+              </div>
+              <div class="mini-card">
+                <strong>Defender</strong>
+                <span>Threat monitoring enabled</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <span class="panel-title">Core Delivery Scope</span>
+            </div>
+            <ul class="list-clean">
+              <li>Device enrollment, compliance policies, and application governance</li>
+              <li>Entra ID setup, MFA, Conditional Access, and SSO rollout</li>
+              <li>Microsoft Defender deployment, visibility, and response workflows</li>
+              <li>Support operations, reporting, and continuous posture improvement</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container trust-bar">
+      <div class="trust-item">
+        <strong>SME Focus</strong>
+        <span>Designed for growing businesses without full internal security teams.</span>
+      </div>
+      <div class="trust-item">
+        <strong>Microsoft Stack</strong>
+        <span>Clear specialization in Intune, identity, and endpoint protection.</span>
+      </div>
+      <div class="trust-item">
+        <strong>Fast Delivery</strong>
+        <span>Structured onboarding, practical rollout, and clearly defined next steps.</span>
+      </div>
+      <div class="trust-item">
+        <strong>Managed Support</strong>
+        <span>Operational support model with measurable service expectations.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Security and management services built around the Microsoft ecosystem</h2>
+        <p>
+          A clear offer for organizations that need stronger control over devices, user access, and endpoint risk without unnecessary complexity.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon">🖥️</div>
+          <h3>Microsoft Intune</h3>
+          <p>Unified endpoint management across corporate and BYOD environments.</p>
+          <ul>
+            <li>Device enrollment and policy baselines</li>
+            <li>Compliance rules and secure access controls</li>
+            <li>Application deployment and update management</li>
+            <li>Windows Autopilot configuration</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="icon">🔐</div>
+          <h3>Identity & Access</h3>
+          <p>Modern identity controls for secure access, visibility, and operational consistency.</p>
+          <ul>
+            <li>Microsoft Entra ID / Azure AD configuration</li>
+            <li>MFA and Conditional Access design</li>
+            <li>Single Sign-On implementation</li>
+            <li>Identity monitoring and access reviews</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="icon">🛡️</div>
+          <h3>Microsoft Defender</h3>
+          <p>Practical endpoint security for detection, investigation, and response readiness.</p>
+          <ul>
+            <li>Endpoint security onboarding</li>
+            <li>Threat visibility and incident workflows</li>
+            <li>Vulnerability monitoring</li>
+            <li>Security improvement recommendations</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why-us">
+    <div class="container split">
+      <div class="section-head">
+        <h2>Why companies choose IntuneGuard</h2>
+        <p>
+          The positioning is simple: deliver Microsoft-native security operations in a way that is commercially clear, operationally disciplined, and realistic for SME environments.
+        </p>
+      </div>
+
+      <div class="value-grid">
+        <div class="info-box">
+          <strong>Focused specialization</strong>
+          <span>Not generic IT support. The offer is centered on Microsoft security and control layers.</span>
+        </div>
+        <div class="info-box">
+          <strong>Business-ready delivery</strong>
+          <span>Designed for actual business operations, not lab-only technical setups.</span>
+        </div>
+        <div class="info-box">
+          <strong>Scalable structure</strong>
+          <span>Suitable for growing teams that need policy maturity without a full security department.</span>
+        </div>
+        <div class="info-box">
+          <strong>Clear support expectations</strong>
+          <span>Defined response targets, packaged offers, and measurable engagement stages.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="industries">
+    <div class="container split">
+      <div class="section-head">
+        <h2>Ideal clients and industries</h2>
+        <p>
+          The landing page is positioned to speak directly to practical B2B buyers: owners, operations managers, and IT decision-makers in growth-stage companies.
+        </p>
+      </div>
+
+      <div class="audience-grid">
+        <div class="info-box">
+          <strong>Clinics & Healthcare</strong>
+          <span>Secure staff devices, access, and cloud-based workflows handling sensitive information.</span>
+        </div>
+        <div class="info-box">
+          <strong>Law Firms</strong>
+          <span>Strengthen client confidentiality controls and endpoint governance.</span>
+        </div>
+        <div class="info-box">
+          <strong>Startups & SMEs</strong>
+          <span>Build a secure operational baseline early without hiring a full internal team.</span>
+        </div>
+        <div class="info-box">
+          <strong>Education & Logistics</strong>
+          <span>Standardize device compliance and simplify user access across distributed teams.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>Simple commercial flow from first contact to deployment</h2>
+        <p>
+          A clean structure improves trust, shortens sales cycles, and makes the engagement feel controlled from the beginning.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="step">01</div>
+          <div class="step-copy">
+            <h3>Lead qualification</h3>
+            <p>Validate company size, environment fit, business need, and urgency before deeper technical scoping.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="step">02</div>
+          <div class="step-copy">
+            <h3>Discovery call</h3>
+            <p>Review current device management, access controls, endpoint risks, and support pain points in a focused 30-minute session.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="step">03</div>
+          <div class="step-copy">
+            <h3>Security assessment</h3>
+            <p>Map the Microsoft environment, identify risks, and define the required project or managed support scope.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="step">04</div>
+          <div class="step-copy">
+            <h3>Proposal within 48 hours</h3>
+            <p>Deliver a structured commercial offer with implementation approach, package, response expectations, and next actions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-head">
+        <h2>Package structure for presentation</h2>
+        <p>
+          Placeholder commercial blocks are included so the site looks complete now. Replace with your real packages later, or switch all pricing to custom quotes only.
+        </p>
+      </div>
+
+      <div class="pricing">
+        <article class="card price-card">
+          <h3>Starter</h3>
+          <p>For small teams that need a clean baseline and initial control structure.</p>
+          <div class="price">$299 <small>/ month</small></div>
+          <ul>
+            <li>Up to 15 users</li>
+            <li>Intune baseline setup</li>
+            <li>MFA rollout</li>
+            <li>Monthly reporting</li>
+          </ul>
+        </article>
+
+        <article class="card price-card featured">
+          <span class="tag">Most Popular</span>
+          <h3>Growth</h3>
+          <p>Balanced package for SMEs needing device, identity, and endpoint security coverage.</p>
+          <div class="price">$699 <small>/ month</small></div>
+          <ul>
+            <li>Up to 50 users</li>
+            <li>Intune + Entra ID policies</li>
+            <li>Defender onboarding</li>
+            <li>Priority support response</li>
+          </ul>
+        </article>
+
+        <article class="card price-card">
+          <h3>Advanced</h3>
+          <p>For larger or more complex environments requiring ongoing optimization and custom controls.</p>
+          <div class="price">Custom <small>pricing</small></div>
+          <ul>
+            <li>50+ users</li>
+            <li>Custom security roadmap</li>
+            <li>Advanced policy design</li>
+            <li>Managed advisory support</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="pricing-note">Current prices are placeholders for design completeness. Replace them later with your actual commercial model.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Operational metrics section</h2>
+        <p>
+          This section gives the brand a more structured B2B feel and supports trust-building with prospects and partners.
+        </p>
+      </div>
+
+      <div class="grid-4">
+        <div class="info-box">
+          <strong>≤ 180 EGP</strong>
+          <span>Target cost per lead</span>
+        </div>
+        <div class="info-box">
+          <strong>25%+</strong>
+          <span>Lead to meeting conversion</span>
+        </div>
+        <div class="info-box">
+          <strong>60%+</strong>
+          <span>Meeting to proposal conversion</span>
+        </div>
+        <div class="info-box">
+          <strong>35%+</strong>
+          <span>Proposal to deal conversion</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>Frequently asked questions</h2>
+        <p>
+          These answers are generic placeholders written to make the page production-like until you provide the final commercial data.
+        </p>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Do you work only with Microsoft environments?</h3>
+          <p>The current positioning of IntuneGuard is Microsoft-first. That makes the offer clearer and stronger for companies already using Microsoft 365, Azure, Intune, or Defender.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What size of company is the best fit?</h3>
+          <p>The offer is structured mainly for SMEs, typically in the 5 to 200 employee range, especially businesses that need better control without building a full security department.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Do you offer one-time projects or ongoing support?</h3>
+          <p>Both models are represented in the page structure. You can use this site to sell implementation projects, recurring managed services, or a hybrid model.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can this page work on GitHub Pages directly?</h3>
+          <p>Yes. This file is structured as a static landing page and is suitable for direct deployment on GitHub Pages with a simple repository setup.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <div class="eyebrow">Next step</div>
+          <h2 style="margin:0 0 10px; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -1px;">Ready to present IntuneGuard as a serious Microsoft security partner?</h2>
+          <p style="margin:0 0 18px; color: var(--muted); font-size: 17px;">
+            This contact area is already wired with placeholders so you can publish now and replace the final company details later in one pass.
+          </p>
+          <div class="hero-actions" style="margin:0;">
+            <a class="btn btn-primary" href="mailto:hello@intuneguard.com">Request Proposal</a>
+            <a class="btn btn-secondary" href="https://linkedin.com/company/intuneguard" target="_blank" rel="noreferrer">Visit LinkedIn</a>
+          </div>
+          <div class="placeholder-note">Placeholder links and contact data are included intentionally. Replace them later with final business details.</div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-list">
+            <div><strong>Email:</strong> <a href="mailto:hello@intuneguard.com">hello@intuneguard.com</a></div>
+            <div><strong>Phone:</strong> <a href="tel:+201000000000">+20 100 000 0000</a></div>
+            <div><strong>Location:</strong> Cairo, Egypt</div>
+            <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/intuneguard" target="_blank" rel="noreferrer">linkedin.com/company/intuneguard</a></div>
+            <div><strong>Assessment Form:</strong> <a href="#">https://your-form-link.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-col">
+          <h4>IntuneGuard Solutions</h4>
+          <p>
+            Microsoft-first security and cloud operations for SMEs. Built around device management, identity protection, and endpoint security.
+          </p>
+          <p class="placeholder-note">Logo path: <code>assets/logo.png</code></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#process">Process</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#pricing">Packages</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="mailto:hello@intuneguard.com">Request Proposal</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@intuneguard.com">hello@intuneguard.com</a></li>
+            <li><a href="tel:+201000000000">+20 100 000 0000</a></li>
+            <li>Cairo, Egypt</li>
+            <li><a href="https://linkedin.com/company/intuneguard" target="_blank" rel="noreferrer">LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-note">© 2026 IntuneGuard Solutions. All rights reserved.</div>
+        <div class="footer-note">Static GitHub Pages landing page • Prepared with placeholder assets and links</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
