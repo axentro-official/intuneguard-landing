@@ -4,46 +4,226 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Privacy Policy | IntuneGuard Solutions</title>
-  <meta name="description" content="Privacy policy placeholder page for IntuneGuard Solutions." />
+  <meta name="description" content="Privacy Policy for IntuneGuard Solutions." />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
+    :root {
+      --bg: #06101c;
+      --bg2: #0a1728;
+      --surface: rgba(255, 255, 255, 0.04);
+      --line: rgba(255, 255, 255, 0.10);
+      --text: #eef4ff;
+      --muted: #a9bad2;
+      --primary: #6abcff;
+      --accent: #70ffd1;
+      --radius: 24px;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --max: 940px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(180deg, #07111f 0%, #0d1b30 100%);
-      color: #eef4ff;
-      line-height: 1.7;
+      color: var(--text);
+      line-height: 1.75;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(106, 188, 255, 0.16), transparent 24%),
+        radial-gradient(circle at 100% 10%, rgba(112, 255, 209, 0.08), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
     }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
     .wrap {
-      width: min(calc(100% - 32px), 900px);
+      width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
-      padding: 64px 0;
+      padding: 56px 0 72px;
     }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: linear-gradient(135deg, rgba(106,188,255,0.24), rgba(112,255,209,0.18));
+      padding: 6px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .back-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.18);
+    }
+
     .card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 24px;
-      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
-    h1 { margin-top: 0; font-size: clamp(32px, 4vw, 48px); }
-    p, li { color: #b3c3d9; }
-    a { color: #7fe7ff; text-decoration: none; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(106,188,255,0.18);
+      background: rgba(106,188,255,0.08);
+      color: #d9f2ff;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(34px, 4vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+
+    h2 {
+      margin: 28px 0 10px;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 10px 0 0;
+    }
+
+    .note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      font-size: 13px;
+      color: #8fa4c2;
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 22px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <div class="topbar">
+      <a href="index.html" class="brand" aria-label="Back to IntuneGuard home">
+        <img src="assets/logo.png" alt="IntuneGuard logo" onerror="this.style.display='none'">
+        <span>IntuneGuard Solutions</span>
+      </a>
+
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
     <div class="card">
+      <div class="eyebrow">Legal</div>
       <h1>Privacy Policy</h1>
-      <p>This is a placeholder privacy page for IntuneGuard Solutions. Replace this content with your actual legal and privacy information before production use.</p>
-      <ul>
-        <li>What information you collect</li>
-        <li>Why you collect it</li>
-        <li>How you store and protect it</li>
-        <li>How users can contact you</li>
-      </ul>
-      <p><a href="index.html">← Back to home</a></p>
+
+      <p>
+        This Privacy Policy describes how IntuneGuard Solutions may collect, use, store, and protect information submitted through this website, including contact forms, consultation requests, and direct communication channels.
+      </p>
+
+      <h2>Information We May Collect</h2>
+      <p>
+        We may collect business contact information such as your name, company name, email address, phone number, and any details you voluntarily provide when contacting us.
+      </p>
+
+      <h2>How We Use Information</h2>
+      <p>
+        Information may be used to respond to inquiries, schedule consultations, provide service information, improve communication, and maintain business records related to requested services.
+      </p>
+
+      <h2>How We Protect Information</h2>
+      <p>
+        We aim to handle submitted information responsibly and apply reasonable administrative and technical safeguards to protect it from unauthorized access, misuse, or disclosure.
+      </p>
+
+      <h2>Data Sharing</h2>
+      <p>
+        We do not sell personal information. Information may only be shared when necessary for service delivery, legal compliance, or operational requirements connected to your request.
+      </p>
+
+      <h2>Your Rights</h2>
+      <p>
+        You may contact us to request correction, update, or deletion of the information you have previously shared with us, subject to any legal or operational requirements.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        For privacy-related questions, please contact IntuneGuard Solutions through the communication details published on the website.
+      </p>
+
+      <div class="note">
+        Replace this document later with your final legal text after confirming your actual contact methods, forms, analytics tools, and data retention practices.
+      </div>
+
+      <div class="footer-note">
+        Last updated: 2026
+      </div>
     </div>
   </div>
 </body>
