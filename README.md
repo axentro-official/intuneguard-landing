@@ -1,21 +1,27 @@
 # IntuneGuard Landing Page
 
-Polished static landing page for IntuneGuard Solutions, prepared for GitHub Pages deployment.
+Professional static landing page for **IntuneGuard Solutions**, built for direct deployment on **GitHub Pages**.
 
-## Files
+## Project Structure
 
 - `index.html` — main landing page
-- `privacy.html` — privacy policy placeholder page
-- `assets/logo.png` — company logo placeholder
-- `assets/og-cover.jpg` — social preview image placeholder
-- `assets/favicon.png` — favicon placeholder
+- `privacy.html` — privacy policy page
+- `assets/logo.png` — company logo
+- `assets/og-cover.jpg` — social sharing preview image
+- `assets/favicon.png` — browser favicon
 
-## Replace later
+## Deployment
 
-- Business email
-- Phone number
-- WhatsApp number
-- LinkedIn URL
-- Assessment form link
-- Package pricing
-- Real logo / cover image / favicon
+This project is designed to run as a static website on GitHub Pages.
+
+### Recommended repository structure
+
+```text
+intuneguard-landing/
+├─ index.html
+├─ privacy.html
+├─ README.md
+└─ assets/
+   ├─ logo.png
+   ├─ og-cover.jpg
+   └─ favicon.png
