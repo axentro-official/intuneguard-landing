@@ -1,1693 +1,306 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IntuneGuard Solutions | Microsoft Security, Identity & Endpoint Management</title>
-  <meta name="description" content="IntuneGuard Solutions delivers Microsoft-first endpoint management, identity security, and endpoint protection for SMEs using Intune, Entra ID, Azure, and Defender." />
-  <meta name="theme-color" content="#07111f" />
-  <meta property="og:title" content="IntuneGuard Solutions" />
-  <meta property="og:description" content="Microsoft-first security operations for growing businesses." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/og-cover.jpg" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #07111f;
-      --bg-soft: #0d1b30;
-      --surface: rgba(13, 27, 48, 0.72);
-      --surface-2: rgba(255, 255, 255, 0.04);
-      --line: rgba(255, 255, 255, 0.10);
-      --line-strong: rgba(255, 255, 255, 0.18);
-      --text: #eef4ff;
-      --muted: #9fb2cd;
-      --primary: #63b6ff;
-      --primary-2: #7fe7ff;
-      --accent: #66ffbf;
-      --warning: #ffd06d;
-      --danger: #ff8a8a;
-      --radius: 22px;
-      --radius-lg: 30px;
-      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
-      --max: 1200px;
-      --nav-h: 80px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      background:
-        radial-gradient(circle at 0% 0%, rgba(99, 182, 255, 0.16), transparent 26%),
-        radial-gradient(circle at 100% 10%, rgba(102, 255, 191, 0.08), transparent 22%),
-        linear-gradient(180deg, #07111f 0%, #081523 42%, #050b14 100%);
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    body.menu-open { overflow: hidden; }
-
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    button { font: inherit; }
-
-    .cursor-glow {
-      position: fixed;
-      width: 320px;
-      height: 320px;
-      left: 0;
-      top: 0;
-      border-radius: 50%;
-      pointer-events: none;
-      background: radial-gradient(circle, rgba(99,182,255,0.12), transparent 65%);
-      transform: translate(-50%, -50%);
-      z-index: 0;
-      filter: blur(12px);
-      opacity: 0.9;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section {
-      padding: 42px 0;
-      scroll-margin-top: calc(var(--nav-h) + 18px);
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    .section-head h2 {
-      margin: 0 0 10px;
-      font-size: clamp(30px, 4vw, 46px);
-      line-height: 1.06;
-      letter-spacing: -1px;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(127, 231, 255, 0.18);
-      background: rgba(127, 231, 255, 0.06);
-      color: #daf8ff;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      backdrop-filter: blur(10px);
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(7, 17, 31, 0.72);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .nav.scrolled {
-      background: rgba(7, 17, 31, 0.90);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
-      border-bottom-color: rgba(255,255,255,0.09);
-    }
-
-    .nav-inner {
-      min-height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-      transition: transform 0.2s ease;
-    }
-
-    .brand:hover { transform: translateY(-1px); }
-
-    .brand-logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: linear-gradient(135deg, rgba(99,182,255,0.24), rgba(102,255,191,0.18));
-      padding: 6px;
-      box-shadow: 0 12px 30px rgba(99,182,255,0.18);
-    }
-
-    .brand-fallback {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      color: #05101b;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      box-shadow: 0 12px 30px rgba(99,182,255,0.18);
-    }
-
-    .brand-copy strong {
-      display: block;
-      font-size: 15px;
-      line-height: 1.1;
-    }
-
-    .brand-copy span {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .nav-links a {
-      position: relative;
-      transition: color 0.2s ease;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      transition: width 0.22s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active { color: var(--text); }
-    .nav-links a:hover::after,
-    .nav-links a.active::after { width: 100%; }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .menu-toggle {
-      display: none;
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.03);
-      color: var(--text);
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .menu-toggle:hover { transform: translateY(-1px); border-color: var(--line-strong); }
-
-    .menu-toggle span,
-    .menu-toggle span::before,
-    .menu-toggle span::after {
-      display: block;
-      width: 18px;
-      height: 2px;
-      border-radius: 999px;
-      background: currentColor;
-      content: "";
-      position: relative;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .menu-toggle span::before { position: absolute; top: -6px; }
-    .menu-toggle span::after { position: absolute; top: 6px; }
-
-    .menu-toggle.open span { background: transparent; }
-    .menu-toggle.open span::before { top: 0; transform: rotate(45deg); }
-    .menu-toggle.open span::after { top: 0; transform: rotate(-45deg); }
-
-    .mobile-menu {
-      display: none;
-      padding: 0 0 18px;
-    }
-
-    .mobile-sheet {
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(13, 27, 48, 0.94);
-      box-shadow: var(--shadow);
-      padding: 12px;
-      display: grid;
-      gap: 6px;
-    }
-
-    .mobile-sheet a,
-    .mobile-sheet button {
-      padding: 14px 16px;
-      border-radius: 14px;
-      color: var(--text);
-      background: transparent;
-      border: 0;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .mobile-sheet a:hover,
-    .mobile-sheet button:hover { background: rgba(255,255,255,0.05); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 20px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-weight: 800;
-      cursor: pointer;
-      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background 0.24s ease;
-      will-change: transform;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      color: #05101a;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      box-shadow: 0 18px 36px rgba(99,182,255,0.26);
-    }
-
-    .btn-primary:hover { box-shadow: 0 22px 38px rgba(99,182,255,0.30); }
-
-    .btn-secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.02);
-      border-color: var(--line);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .hero {
-      position: relative;
-      padding: 82px 0 54px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      margin: 0 0 16px;
-      font-size: clamp(42px, 5vw, 72px);
-      line-height: 0.97;
-      letter-spacing: -2px;
-      max-width: 11ch;
-    }
-
-    .hero p {
-      margin: 0 0 24px;
-      color: var(--muted);
-      font-size: 18px;
-      max-width: 64ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-
-    .meta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .meta-pill {
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .meta-pill:hover {
-      transform: translateY(-2px);
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .hero-card {
-      position: relative;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      padding: 24px;
-      transform-style: preserve-3d;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      right: -90px;
-      top: -80px;
-      background: radial-gradient(circle, rgba(99,182,255,0.24), transparent 70%);
-      pointer-events: none;
-    }
-
-    .dashboard {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      gap: 16px;
-    }
-
-    .panel {
-      padding: 18px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(7, 17, 31, 0.62);
-      transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease;
-    }
-
-    .panel:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255,255,255,0.12);
-      background: rgba(7, 17, 31, 0.72);
-    }
-
-    .panel-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .panel-title {
-      font-weight: 800;
-      font-size: 15px;
-    }
-
-    .status {
-      padding: 7px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      color: #a9ffd7;
-      background: rgba(102,255,191,0.1);
-      border: 1px solid rgba(102,255,191,0.18);
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .mini-card {
-      padding: 15px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.07);
-      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-    }
-
-    .mini-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--line-strong);
-      box-shadow: 0 16px 32px rgba(0,0,0,0.16);
-    }
-
-    .mini-card strong {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 4px;
-    }
-
-    .mini-card span {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .list-clean {
-      display: grid;
-      gap: 10px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .list-clean li {
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.07);
-      background: rgba(255,255,255,0.03);
-      color: #dfebfd;
-      font-size: 14px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .list-clean li:hover {
-      transform: translateX(4px);
-      border-color: rgba(255,255,255,0.12);
-    }
-
-    .trust-bar,
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .trust-item,
-    .info-box,
-    .metric-card {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--line);
-      transition: transform 0.24s ease, border-color 0.24s ease, background 0.24s ease, box-shadow 0.24s ease;
-    }
-
-    .trust-item:hover,
-    .info-box:hover,
-    .metric-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,0.045);
-      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
-    }
-
-    .trust-item strong,
-    .metric-card strong {
-      display: block;
-      font-size: 28px;
-      margin-bottom: 5px;
-    }
-
-    .trust-item span,
-    .info-box span,
-    .metric-card span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      position: relative;
-      padding: 24px;
-      border-radius: var(--radius);
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: auto 0 0 0;
-      height: 3px;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.28s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--line-strong);
-      box-shadow: 0 28px 54px rgba(0,0,0,0.26);
-      background: rgba(13, 27, 48, 0.84);
-    }
-
-    .card:hover::before { transform: scaleX(1); }
-
-    .icon {
-      width: 56px;
-      height: 56px;
-      display: grid;
-      place-items: center;
-      border-radius: 18px;
-      margin-bottom: 16px;
-      font-size: 24px;
-      background: linear-gradient(135deg, rgba(99,182,255,0.18), rgba(102,255,191,0.12));
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: transform 0.24s ease;
-    }
-
-    .card:hover .icon { transform: rotate(-6deg) scale(1.04); }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-    }
-
-    .card p {
-      margin: 0 0 14px;
-      color: var(--muted);
-    }
-
-    .card ul {
-      margin: 0;
-      padding-left: 18px;
-      color: #deebfc;
-    }
-
-    .card li + li { margin-top: 7px; }
-
-    .split {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .industry-grid,
-    .value-grid,
-    .audience-grid,
-    .quote-grid { 
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .info-box strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 17px;
-    }
-
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .pain-card {
-      padding: 22px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--line);
-      transition: transform 0.24s ease, border-color 0.24s ease;
-    }
-
-    .pain-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255,138,138,0.24);
-    }
-
-    .pain-card strong {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    .pain-card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .timeline {
-      display: grid;
-      gap: 14px;
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 66px 1fr;
-      gap: 14px;
-      padding: 18px;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.025);
-      transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
-    }
-
-    .timeline-item:hover {
-      transform: translateX(4px);
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,0.045);
-    }
-
-    .step {
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: #05101a;
-      background: linear-gradient(135deg, var(--accent), var(--primary-2));
-      box-shadow: 0 10px 24px rgba(99,182,255,0.18);
-    }
-
-    .step-copy h3 {
-      margin: 0 0 6px;
-      font-size: 18px;
-    }
-
-    .step-copy p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .pricing {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      align-items: start;
-    }
-
-    .price-card {
-      position: relative;
-      isolation: isolate;
-    }
-
-    .price-card.featured {
-      transform: translateY(-6px);
-      border-color: rgba(127, 231, 255, 0.24);
-    }
-
-    .price-card.featured::after {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(127,231,255,0.55), rgba(102,255,191,0.34));
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-    }
-
-    .tag {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 900;
-      color: #05101a;
-      background: linear-gradient(135deg, var(--accent), var(--primary-2));
-      box-shadow: 0 12px 24px rgba(99,182,255,0.18);
-    }
-
-    .price {
-      margin: 10px 0 12px;
-      font-size: 42px;
-      line-height: 1;
-      font-weight: 900;
-    }
-
-    .price small {
-      font-size: 14px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .quote-card {
-      padding: 20px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid var(--line);
-      transition: transform 0.24s ease, border-color 0.24s ease;
-    }
-
-    .quote-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--line-strong);
-    }
-
-    .quote-card p {
-      margin: 0 0 16px;
-      color: #e3edfb;
-    }
-
-    .quote-card strong {
-      display: block;
-      font-size: 15px;
-    }
-
-    .quote-card span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .faq {
-      display: grid;
-      gap: 14px;
-    }
-
-    .faq-item {
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.025);
-      overflow: hidden;
-      transition: border-color 0.24s ease, background 0.24s ease;
-    }
-
-    .faq-item.open {
-      border-color: var(--line-strong);
-      background: rgba(255,255,255,0.045);
-    }
-
-    .faq-question {
-      width: 100%;
-      background: transparent;
-      border: 0;
-      color: var(--text);
-      text-align: left;
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .faq-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.10);
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      transition: transform 0.22s ease, background 0.22s ease;
-      background: rgba(255,255,255,0.03);
-    }
-
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      background: rgba(255,255,255,0.06);
-    }
-
-    .faq-answer {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.28s ease;
-    }
-
-    .faq-answer-inner {
-      overflow: hidden;
-    }
-
-    .faq-answer p {
-      margin: 0;
-      color: var(--muted);
-      padding: 0 20px 20px;
-    }
-
-    .faq-item.open .faq-answer {
-      grid-template-rows: 1fr;
-    }
-
-    .cta {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
-      padding: 34px;
-      border-radius: 30px;
-      border: 1px solid rgba(127, 231, 255, 0.18);
-      background: linear-gradient(135deg, rgba(99,182,255,0.12), rgba(102,255,191,0.08));
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta::before {
-      content: "";
-      position: absolute;
-      right: -60px;
-      bottom: -80px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(127,231,255,0.20), transparent 70%);
-      pointer-events: none;
-    }
-
-    .contact-card {
-      padding: 22px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(7,17,31,0.52);
-      backdrop-filter: blur(8px);
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 12px;
-      color: var(--muted);
-    }
-
-    .contact-list strong { color: var(--text); }
-    .contact-list a { color: var(--text); transition: opacity 0.2s ease; }
-    .contact-list a:hover { opacity: 0.82; }
-
-    .footer {
-      padding: 28px 0 44px;
-      color: var(--muted);
-    }
-
-    .footer-main {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr 0.9fr 0.9fr;
-      gap: 18px;
-      padding: 0 0 24px;
-    }
-
-    .footer-col {
-      padding: 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: rgba(255,255,255,0.02);
-      transition: transform 0.22s ease, border-color 0.22s ease;
-    }
-
-    .footer-col:hover {
-      transform: translateY(-3px);
-      border-color: rgba(255,255,255,0.10);
-    }
-
-    .footer-col h4 {
-      margin: 0 0 10px;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .footer-col p,
-    .footer-col a,
-    .footer-col li {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 8px;
-    }
-
-    .footer-bottom {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .footer-note {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 1100;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 16px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #22c55e, #34d399);
-      color: #04110a;
-      font-weight: 800;
-      box-shadow: 0 18px 34px rgba(34, 197, 94, 0.28);
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-    }
-
-    .whatsapp-float:hover {
-      transform: translateY(-3px) scale(1.01);
-      box-shadow: 0 22px 40px rgba(34, 197, 94, 0.34);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-      .reveal { opacity: 1; transform: none; }
-      .cursor-glow { display: none; }
-    }
-
-    @media (max-width: 1080px) {
-      .hero-grid, .split, .cta, .footer-main { grid-template-columns: 1fr; }
-      .grid-3, .pricing, .pain-grid, .trust-bar, .grid-4 { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 860px) {
-      .nav-links,
-      .nav-actions > .btn { display: none; }
-      .menu-toggle,
-      .mobile-menu { display: flex; }
-      .mobile-menu { display: block; }
-      .hero { padding-top: 58px; }
-      .brand-copy span { display: none; }
-      .whatsapp-float span:last-child { display: none; }
-    }
-
-    @media (max-width: 760px) {
-      .grid-3, .pricing, .pain-grid, .trust-bar, .grid-4, .industry-grid, .value-grid, .audience-grid, .quote-grid, .mini-grid { grid-template-columns: 1fr; }
-      .hero h1 { max-width: none; }
-      .timeline-item { grid-template-columns: 1fr; }
-      .step { width: 44px; height: 44px; }
-      .cta { padding: 24px; }
-      .faq-question { font-size: 16px; }
-      .section { padding: 34px 0; }
-    }
-  </style>
-</head>
-<body>
-  <div class="cursor-glow" aria-hidden="true"></div>
-
-  <nav class="nav" id="topNav">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="#home" class="brand" aria-label="IntuneGuard Solutions Home">
-          <img src="assets/logo.png" alt="IntuneGuard Solutions Logo" class="brand-logo" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex';" />
-          <span class="brand-fallback">IG</span>
-          <span class="brand-copy">
-            <strong>IntuneGuard Solutions</strong>
-            <span>Microsoft Security • Identity • Endpoint Management</span>
-          </span>
-        </a>
-
-        <div class="nav-links" id="desktopNav">
-          <a href="#services">Services</a>
-          <a href="#why-us">Why Us</a>
-          <a href="#industries">Industries</a>
-          <a href="#process">Process</a>
-          <a href="#pricing">Packages</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
-        </div>
-
-        <div class="nav-actions">
-          <a class="btn btn-primary" href="#contact">Book a Discovery Call</a>
-          <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-            <span></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="mobile-menu" id="mobileMenu" hidden>
-        <div class="mobile-sheet">
-          <a href="#services">Services</a>
-          <a href="#why-us">Why Us</a>
-          <a href="#industries">Industries</a>
-          <a href="#process">Process</a>
-          <a href="#pricing">Packages</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
-          <a class="btn btn-primary" href="#contact" style="justify-content:center;">Book a Discovery Call</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <header class="hero section" id="home">
-    <div class="container hero-grid">
-      <div class="reveal">
-        <div class="eyebrow">Microsoft Intune • Entra ID • Azure • Defender</div>
-        <h1>Protect devices, identities, and business operations with one disciplined Microsoft stack.</h1>
-        <p>
-          IntuneGuard Solutions helps growing businesses standardize endpoint management, tighten identity security,
-          and improve endpoint protection without the overhead of building a full internal security team.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Get a Free Assessment</a>
-          <a class="btn btn-secondary" href="#services">Explore Services</a>
-          <a class="btn btn-secondary" href="https://wa.me/201000000000" target="_blank" rel="noreferrer">WhatsApp</a>
-        </div>
-
-        <div class="meta-row">
-          <span class="meta-pill">Built for 5–200 employee teams</span>
-          <span class="meta-pill">Proposal turnaround within 48 hours</span>
-          <span class="meta-pill">Remote support response target: 2–4 hours</span>
-        </div>
-      </div>
-
-      <div class="hero-card reveal" id="heroCard">
-        <div class="dashboard">
-          <div class="panel">
-            <div class="panel-head">
-              <span class="panel-title">Security Operations Snapshot</span>
-              <span class="status">Protected</span>
-            </div>
-            <div class="mini-grid">
-              <div class="mini-card">
-                <strong>98.4%</strong>
-                <span>Policy compliance visibility</span>
-              </div>
-              <div class="mini-card">
-                <strong>MFA</strong>
-                <span>Identity hardening enforced</span>
-              </div>
-              <div class="mini-card">
-                <strong>Autopilot</strong>
-                <span>Faster secure onboarding</span>
-              </div>
-              <div class="mini-card">
-                <strong>Defender</strong>
-                <span>Threat monitoring enabled</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <div class="panel-head">
-              <span class="panel-title">Core Delivery Scope</span>
-            </div>
-            <ul class="list-clean">
-              <li>Device enrollment, compliance policies, and application governance</li>
-              <li>Entra ID setup, MFA, Conditional Access, and SSO rollout</li>
-              <li>Microsoft Defender deployment, visibility, and response workflows</li>
-              <li>Support operations, reporting, and continuous posture improvement</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section class="section">
-    <div class="container trust-bar">
-      <div class="trust-item reveal">
-        <strong>Microsoft-first</strong>
-        <span>Specialized around the exact stack many SMEs already run every day.</span>
-      </div>
-      <div class="trust-item reveal">
-        <strong>Clear delivery</strong>
-        <span>Simple scope, practical rollout, and a clean commercial process.</span>
-      </div>
-      <div class="trust-item reveal">
-        <strong>Operational support</strong>
-        <span>Designed for businesses that need discipline without enterprise overhead.</span>
-      </div>
-      <div class="trust-item reveal">
-        <strong>Security posture</strong>
-        <span>Device controls, access controls, and endpoint visibility in one engagement.</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="services">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Focused services, not generic IT support</h2>
-        <p>
-          The offer is intentionally narrow and stronger because it centers on Microsoft-native device control, identity protection, and endpoint security.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card reveal">
-          <div class="icon">🖥️</div>
-          <h3>Microsoft Intune</h3>
-          <p>Unified endpoint management across corporate devices and controlled BYOD environments.</p>
-          <ul>
-            <li>Device enrollment and compliance baselines</li>
-            <li>Configuration profiles and secure access rules</li>
-            <li>Application deployment and lifecycle control</li>
-            <li>Windows Autopilot onboarding</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <div class="icon">🔐</div>
-          <h3>Identity & Access</h3>
-          <p>Stronger authentication, access governance, and visibility with Microsoft Entra ID.</p>
-          <ul>
-            <li>MFA and Conditional Access rollout</li>
-            <li>Single Sign-On implementation</li>
-            <li>Identity hardening and access reviews</li>
-            <li>Role and permission governance</li>
-          </ul>
-        </article>
-
-        <article class="card reveal">
-          <div class="icon">🛡️</div>
-          <h3>Microsoft Defender</h3>
-          <p>Endpoint protection with clearer incident visibility and a cleaner response posture.</p>
-          <ul>
-            <li>Defender onboarding and configuration</li>
-            <li>Threat visibility and triage support</li>
-            <li>Vulnerability monitoring</li>
-            <li>Remediation recommendations</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="pain-points">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Common pain points this offer is built to solve</h2>
-        <p>
-          This section replaces filler content with more credible business-language pain points that B2B buyers actually recognize.
-        </p>
-      </div>
-      <div class="pain-grid">
-        <div class="pain-card reveal">
-          <strong>Too many unmanaged devices</strong>
-          <p>Endpoints are added over time without consistent policy, visibility, or onboarding controls.</p>
-        </div>
-        <div class="pain-card reveal">
-          <strong>Weak identity hygiene</strong>
-          <p>Accounts, permissions, and sign-in flows grow faster than the security controls around them.</p>
-        </div>
-        <div class="pain-card reveal">
-          <strong>No practical security owner</strong>
-          <p>The company needs real control layers but is not ready to hire a full internal security team.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="why-us">
-    <div class="container split">
-      <div class="section-head reveal">
-        <h2>Why companies choose IntuneGuard</h2>
-        <p>
-          The positioning is straightforward: a disciplined Microsoft security partner for SMEs that need control, not unnecessary complexity.
-        </p>
-      </div>
-
-      <div class="value-grid">
-        <div class="info-box reveal">
-          <strong>Focused specialization</strong>
-          <span>This is not broad IT outsourcing. The proposition is built around Microsoft control layers.</span>
-        </div>
-        <div class="info-box reveal">
-          <strong>Commercial clarity</strong>
-          <span>Structured packages, clear support expectations, and a defined engagement flow.</span>
-        </div>
-        <div class="info-box reveal">
-          <strong>Scalable for SMEs</strong>
-          <span>Strong enough for growing teams without forcing enterprise-only complexity onto the buyer.</span>
-        </div>
-        <div class="info-box reveal">
-          <strong>Operational realism</strong>
-          <span>Designed around how real businesses onboard devices, users, and cloud access every day.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="industries">
-    <div class="container split">
-      <div class="section-head reveal">
-        <h2>Ideal clients and industries</h2>
-        <p>
-          The page speaks to founders, operations managers, and IT decision-makers who need stronger controls but still want a commercially clear partner.
-        </p>
-      </div>
-
-      <div class="audience-grid">
-        <div class="info-box reveal">
-          <strong>Clinics & Healthcare</strong>
-          <span>Protect staff devices, access, and business workflows handling sensitive data.</span>
-        </div>
-        <div class="info-box reveal">
-          <strong>Law Firms</strong>
-          <span>Improve endpoint governance and reduce risk around client-facing systems.</span>
-        </div>
-        <div class="info-box reveal">
-          <strong>Startups & SMEs</strong>
-          <span>Build clean security foundations early without building a full internal security department.</span>
-        </div>
-        <div class="info-box reveal">
-          <strong>Education & Logistics</strong>
-          <span>Standardize compliance, onboarding, and access across distributed users and devices.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="process">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>A simpler path from first call to secure rollout</h2>
-        <p>
-          The process is intentionally short, controlled, and easier for business owners to understand.
-        </p>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="step">01</div>
-          <div class="step-copy">
-            <h3>Lead qualification</h3>
-            <p>Validate environment fit, urgency, user count, and the operational need before deeper scoping.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="step">02</div>
-          <div class="step-copy">
-            <h3>Discovery call</h3>
-            <p>Review device management gaps, access problems, support pain points, and the current Microsoft setup.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="step">03</div>
-          <div class="step-copy">
-            <h3>Security assessment</h3>
-            <p>Map the environment, define key risks, and set the right project or managed support scope.</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="step">04</div>
-          <div class="step-copy">
-            <h3>Proposal within 48 hours</h3>
-            <p>Deliver a clean commercial offer with scope, package, response expectations, and next steps.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="pricing">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Package structure that looks cleaner and more credible</h2>
-        <p>
-          The duplicate or filler-like parts were reduced. This section now presents the offer more clearly and feels closer to a serious B2B service site.
-        </p>
-      </div>
-
-      <div class="pricing">
-        <article class="card price-card reveal">
-          <h3>Starter</h3>
-          <p>For small teams that need a controlled baseline and immediate security hygiene improvements.</p>
-          <div class="price">$299 <small>/ month</small></div>
-          <ul>
-            <li>Up to 15 users</li>
-            <li>Intune baseline setup</li>
-            <li>MFA rollout</li>
-            <li>Monthly reporting</li>
-          </ul>
-        </article>
-
-        <article class="card price-card featured reveal">
-          <span class="tag">Most Popular</span>
-          <h3>Growth</h3>
-          <p>Balanced package for SMEs needing device management, identity controls, and Defender coverage.</p>
-          <div class="price">$699 <small>/ month</small></div>
-          <ul>
-            <li>Up to 50 users</li>
-            <li>Intune + Entra ID policy framework</li>
-            <li>Defender onboarding</li>
-            <li>Priority support response</li>
-          </ul>
-        </article>
-
-        <article class="card price-card reveal">
-          <h3>Advanced</h3>
-          <p>For more complex environments requiring wider governance, optimization, and advisory support.</p>
-          <div class="price">Custom <small>pricing</small></div>
-          <ul>
-            <li>50+ users</li>
-            <li>Custom security roadmap</li>
-            <li>Advanced policy design</li>
-            <li>Ongoing advisory support</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="metrics">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Commercial metrics with less repetition</h2>
-        <p>
-          The metrics remain useful, but the framing is cleaner so the section supports the page instead of feeling duplicated.
-        </p>
-      </div>
-
-      <div class="grid-4">
-        <div class="metric-card reveal">
-          <strong>≤ 180 EGP</strong>
-          <span>Target cost per lead</span>
-        </div>
-        <div class="metric-card reveal">
-          <strong>25%+</strong>
-          <span>Lead to meeting conversion</span>
-        </div>
-        <div class="metric-card reveal">
-          <strong>60%+</strong>
-          <span>Meeting to proposal conversion</span>
-        </div>
-        <div class="metric-card reveal">
-          <strong>35%+</strong>
-          <span>Proposal to close conversion</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="testimonials">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Client proof section, ready for real quotes later</h2>
-        <p>
-          This keeps the page visually complete today and gives you a clean block to replace with real client proof once available.
-        </p>
-      </div>
-
-      <div class="quote-grid">
-        <div class="quote-card reveal">
-          <p>“The structure of the engagement was clear from day one. Device onboarding and identity controls became much easier to manage.”</p>
-          <strong>Placeholder Client One</strong>
-          <span>Operations Manager • Replace later</span>
-        </div>
-        <div class="quote-card reveal">
-          <p>“We needed a partner that understood Microsoft security properly without turning the engagement into a huge enterprise project.”</p>
-          <strong>Placeholder Client Two</strong>
-          <span>Managing Director • Replace later</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Frequently asked questions</h2>
-        <p>
-          The FAQ is now interactive and cleaner, with better separation between each item and less visual clutter.
-        </p>
-      </div>
-
-      <div class="faq">
-        <div class="faq-item reveal open">
-          <button class="faq-question" type="button" aria-expanded="true">
-            <span>Do you work only with Microsoft environments?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Yes, the current positioning is intentionally Microsoft-first. That makes the offer clearer, stronger, and more credible for companies already using Microsoft 365, Azure, Intune, or Defender.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" type="button" aria-expanded="false">
-            <span>What company size is the best fit?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>The offer is positioned mainly for SMEs, typically between 5 and 200 employees, especially businesses that need stronger controls without building a full internal security team.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" type="button" aria-expanded="false">
-            <span>Do you offer projects, managed services, or both?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Both models fit this page structure. You can sell one-time implementation projects, recurring managed services, or a hybrid model depending on your final commercial setup.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-item reveal">
-          <button class="faq-question" type="button" aria-expanded="false">
-            <span>Can this site be published directly on GitHub Pages?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              <p>Yes. The page is fully static and suitable for direct GitHub Pages deployment without a build step.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="cta reveal">
-        <div>
-          <div class="eyebrow">Next step</div>
-          <h2 style="margin:0 0 10px; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -1px;">Ready to present IntuneGuard as a serious Microsoft security partner?</h2>
-          <p style="margin:0 0 18px; color: var(--muted); font-size: 17px;">
-            The content blocks are now cleaner, the interactions are more polished, and the page is better prepared for your final branding pass.
-          </p>
-          <div class="hero-actions" style="margin:0;">
-            <a class="btn btn-primary" href="mailto:hello@intuneguard.com">Request Proposal</a>
-            <a class="btn btn-secondary" href="https://linkedin.com/company/intuneguard" target="_blank" rel="noreferrer">Visit LinkedIn</a>
-            <a class="btn btn-secondary" href="https://wa.me/201000000000" target="_blank" rel="noreferrer">Chat on WhatsApp</a>
-          </div>
-        </div>
-
-        <div class="contact-card">
-          <div class="contact-list">
-            <div><strong>Email:</strong> <a href="mailto:hello@intuneguard.com">hello@intuneguard.com</a></div>
-            <div><strong>Phone:</strong> <a href="tel:+201000000000">+20 100 000 0000</a></div>
-            <div><strong>Location:</strong> Cairo, Egypt</div>
-            <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/intuneguard" target="_blank" rel="noreferrer">linkedin.com/company/intuneguard</a></div>
-            <div><strong>Assessment Form:</strong> <a href="#">https://your-form-link.com</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-main">
-        <div class="footer-col reveal">
-          <h4>IntuneGuard Solutions</h4>
-          <p>
-            Microsoft-first security and cloud operations for SMEs, built around endpoint management, identity protection, and endpoint security.
-          </p>
-        </div>
-
-        <div class="footer-col reveal">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#why-us">Why Us</a></li>
-            <li><a href="#industries">Industries</a></li>
-            <li><a href="#process">Process</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col reveal">
-          <h4>Resources</h4>
-          <ul>
-            <li><a href="#pricing">Packages</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="mailto:hello@intuneguard.com">Request Proposal</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col reveal">
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="mailto:hello@intuneguard.com">hello@intuneguard.com</a></li>
-            <li><a href="tel:+201000000000">+20 100 000 0000</a></li>
-            <li>Cairo, Egypt</li>
-            <li><a href="https://linkedin.com/company/intuneguard" target="_blank" rel="noreferrer">LinkedIn</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div class="footer-note">© 2026 IntuneGuard Solutions. All rights reserved.</div>
-        <div class="footer-note">Static GitHub Pages landing page • polished interactive edition</div>
-      </div>
-    </div>
-  </footer>
-
-  <a class="whatsapp-float" href="https://wa.me/201000000000" target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
-    <span>✆</span>
-    <span>WhatsApp</span>
-  </a>
-
-  <script>
-    const topNav = document.getElementById('topNav');
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const heroCard = document.getElementById('heroCard');
-    const cursorGlow = document.querySelector('.cursor-glow');
-    const revealItems = document.querySelectorAll('.reveal');
-    const faqItems = document.querySelectorAll('.faq-item');
-    const navLinks = document.querySelectorAll('#desktopNav a, #mobileMenu a');
-    const sectionLinks = document.querySelectorAll('#desktopNav a');
-    const sections = [...document.querySelectorAll('section[id], header[id]')];
-
-    const closeMenu = () => {
-      mobileMenu.hidden = true;
-      menuToggle.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('menu-open');
-    };
-
-    const openMenu = () => {
-      mobileMenu.hidden = false;
-      menuToggle.classList.add('open');
-      menuToggle.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('menu-open');
-    };
-
-    menuToggle?.addEventListener('click', () => {
-      if (mobileMenu.hidden) openMenu(); else closeMenu();
-    });
-
-    navLinks.forEach(link => link.addEventListener('click', closeMenu));
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
-    });
-
-    window.addEventListener('scroll', () => {
-      topNav.classList.toggle('scrolled', window.scrollY > 10);
-
-      const scrollPosition = window.scrollY + 140;
-      let current = sections[0]?.id || 'home';
-      sections.forEach(section => {
-        if (section.offsetTop <= scrollPosition) current = section.id;
-      });
-      sectionLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-    }, { passive: true });
-
-    faqItems.forEach(item => {
-      const button = item.querySelector('.faq-question');
-      button.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        faqItems.forEach(faq => {
-          faq.classList.remove('open');
-          faq.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-        });
-        if (!isOpen) {
-          item.classList.add('open');
-          button.setAttribute('aria-expanded', 'true');
-        }
-      });
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
-
-    revealItems.forEach(item => observer.observe(item));
-
-    if (heroCard && window.matchMedia('(min-width: 981px)').matches) {
-      heroCard.addEventListener('mousemove', (e) => {
-        const rect = heroCard.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const rotateY = ((x / rect.width) - 0.5) * 8;
-        const rotateX = ((y / rect.height) - 0.5) * -8;
-        heroCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-      heroCard.addEventListener('mouseleave', () => {
-        heroCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      });
-    }
-
-    if (cursorGlow && window.matchMedia('(pointer:fine)').matches) {
-      window.addEventListener('mousemove', (e) => {
-        cursorGlow.style.left = `${e.clientX}px`;
-        cursorGlow.style.top = `${e.clientY}px`;
-      }, { passive: true });
-    } else if (cursorGlow) {
-      cursorGlow.style.display = 'none';
-    }
-  </script>
-</body>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IntuneGuard Solutions | Microsoft Security & Endpoint Management</title>
+<meta name="description" content="IntuneGuard Solutions provides Microsoft‑first endpoint management, identity protection and cloud security for growing businesses." />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><style>
+:root{
+--bg:#07111f;
+--surface:#0d1b30;
+--card:#12233f;
+--line:rgba(255,255,255,.1);
+--text:#eef4ff;
+--muted:#9fb2cd;
+--primary:#63b6ff;
+--accent:#66ffbf;
+--radius:18px;
+--shadow:0 18px 45px rgba(0,0,0,.35);
+--max:1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:
+radial-gradient(circle at 0% 0%,rgba(99,182,255,.16),transparent 28%),
+radial-gradient(circle at 100% 10%,rgba(102,255,191,.08),transparent 24%),
+linear-gradient(180deg,#07111f 0%,#050c18 100%);
+color:var(--text);
+line-height:1.6;
+}
+
+.container{width:min(calc(100% - 40px),var(--max));margin:auto}
+section{padding:70px 0}
+
+h1{font-size:clamp(38px,5vw,64px);margin:0 0 16px;letter-spacing:-1.5px}
+h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px}
+p{color:var(--muted)}
+
+/* NAV */
+nav{
+position:sticky;
+top:0;
+backdrop-filter:blur(12px);
+background:rgba(7,17,31,.8);
+border-bottom:1px solid var(--line);
+z-index:1000
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand img{width:42px;height:42px;border-radius:12px}
+
+.nav-links{display:flex;gap:24px;font-weight:500;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+
+.btn{
+padding:12px 20px;
+border-radius:12px;
+font-weight:700;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+transition:.25s;
+}
+
+.btn-primary{
+background:linear-gradient(135deg,var(--primary),var(--accent));
+color:#04111c;
+box-shadow:0 10px 28px rgba(99,182,255,.25)
+}
+
+.btn-primary:hover{transform:translateY(-2px) scale(1.02)}
+
+/* HERO */
+.hero{padding:110px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero p{font-size:18px}
+.hero-actions{display:flex;gap:14px;margin-top:22px}
+
+.hero-card{
+background:var(--surface);
+border:1px solid var(--line);
+padding:24px;
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+transition:.35s
+}
+
+.hero-card:hover{transform:translateY(-6px)}
+
+/* SERVICES */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+background:var(--card);
+padding:24px;
+border-radius:var(--radius);
+border:1px solid var(--line);
+transition:.35s;
+box-shadow:var(--shadow)
+}
+
+.card:hover{transform:translateY(-6px)}
+
+.icon{
+width:50px;height:50px;border-radius:14px;
+display:grid;place-items:center;
+background:linear-gradient(135deg,var(--primary),var(--accent));
+color:#05101b;font-weight:800;margin-bottom:14px
+}
+
+/* INDUSTRIES */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+
+/* PROCESS */
+.timeline{display:grid;gap:18px}
+.step{
+display:grid;
+grid-template-columns:60px 1fr;
+background:var(--surface);
+padding:18px;border-radius:var(--radius);
+border:1px solid var(--line)
+}
+.step-num{
+width:42px;height:42px;border-radius:12px;
+background:linear-gradient(135deg,var(--primary),var(--accent));
+display:grid;place-items:center;font-weight:800;color:#04111c
+}
+
+/* PRICING */
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.price{font-size:40px;font-weight:800;margin:10px 0}
+
+/* FAQ */
+.faq-item{
+border:1px solid var(--line);
+border-radius:var(--radius);
+padding:18px;
+background:var(--surface);
+cursor:pointer
+}
+
+.faq-answer{display:none;margin-top:10px}
+
+/* CTA */
+.cta{
+background:linear-gradient(135deg,rgba(99,182,255,.12),rgba(102,255,191,.08));
+padding:40px;border-radius:var(--radius);
+border:1px solid var(--line);
+display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center
+}
+
+/* FOOTER */
+footer{padding:50px 0;color:var(--muted)}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+
+footer a{color:var(--muted)}
+footer a:hover{color:var(--text)}
+
+/* MOBILE */
+@media (max-width:900px){
+.hero-grid,.pricing,.grid-3,.footer-grid,.grid-2{grid-template-columns:1fr}
+.nav-links{display:none}
+}
+</style></head><body><nav>
+<div class="container nav-inner">
+<div class="brand">
+<img src="assets/logo.png" alt="logo">
+<span>IntuneGuard</span>
+</div>
+<div class="nav-links">
+<a href="#services">Services</a>
+<a href="#industries">Industries</a>
+<a href="#process">Process</a>
+<a href="#pricing">Packages</a>
+<a href="#contact">Contact</a>
+</div>
+<a class="btn btn-primary" href="#contact">Book Consultation</a>
+</div>
+</nav><header class="hero" id="home">
+<div class="container hero-grid">
+<div>
+<h1>Secure your devices, identities and cloud operations.</h1>
+<p>IntuneGuard helps growing companies deploy Microsoft‑first security operations using Intune, Entra ID and Microsoft Defender.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#contact">Free Security Assessment</a>
+<a class="btn" href="#services">Explore Services</a>
+</div>
+</div><div class="hero-card">
+<strong>Microsoft Security Stack</strong>
+<ul>
+<li>Endpoint Management with Intune</li>
+<li>Identity Security with Entra ID</li>
+<li>Threat Protection with Defender</li>
+<li>Secure Device Onboarding</li>
+</ul>
+</div>
+</div>
+</header><section id="services">
+<div class="container">
+<h2>Core Services</h2>
+<p>Focused Microsoft ecosystem security services for SMEs.</p><div class="grid-3">
+<div class="card">
+<div class="icon">🖥</div>
+<h3>Microsoft Intune</h3>
+<p>Unified device management across Windows, macOS, Android and iOS.</p>
+</div><div class="card">
+<div class="icon">🔐</div>
+<h3>Identity Protection</h3>
+<p>MFA, Conditional Access and Entra ID security configuration.</p>
+</div><div class="card">
+<div class="icon">🛡</div>
+<h3>Endpoint Security</h3>
+<p>Microsoft Defender deployment with monitoring and response.</p>
+</div>
+</div>
+</div>
+</section><section id="industries">
+<div class="container">
+<h2>Industries We Support</h2>
+<div class="grid-2">
+<div class="card"><strong>Healthcare</strong><p>Protect sensitive medical systems and staff devices.</p></div>
+<div class="card"><strong>Law Firms</strong><p>Secure client data and control access to internal systems.</p></div>
+<div class="card"><strong>Startups</strong><p>Build strong security foundations from day one.</p></div>
+<div class="card"><strong>Logistics</strong><p>Secure distributed teams and operational devices.</p></div>
+</div>
+</div>
+</section><section id="process">
+<div class="container">
+<h2>How Engagement Works</h2>
+<div class="timeline">
+<div class="step"><div class="step-num">1</div><div><strong>Discovery Call</strong><p>Understand environment and security gaps.</p></div></div>
+<div class="step"><div class="step-num">2</div><div><strong>Security Assessment</strong><p>Analyze risk exposure and required setup.</p></div></div>
+<div class="step"><div class="step-num">3</div><div><strong>Implementation</strong><p>Deploy Microsoft security stack.</p></div></div>
+<div class="step"><div class="step-num">4</div><div><strong>Ongoing Support</strong><p>Monitoring, updates and security improvements.</p></div></div>
+</div>
+</div>
+</section><section id="pricing">
+<div class="container">
+<h2>Service Packages</h2>
+<div class="pricing">
+<div class="card">
+<h3>Starter</h3>
+<div class="price">$299</div>
+<p>Basic security setup for small teams.</p>
+</div><div class="card">
+<h3>Growth</h3>
+<div class="price">$699</div>
+<p>Full device, identity and endpoint coverage.</p>
+</div><div class="card">
+<h3>Enterprise</h3>
+<div class="price">Custom</div>
+<p>Advanced deployments and security consulting.</p>
+</div>
+</div>
+</div>
+</section><section id="contact">
+<div class="container">
+<div class="cta">
+<div>
+<h2>Start securing your Microsoft environment today.</h2>
+<p>Schedule a consultation and receive a security assessment.</p>
+</div>
+<a class="btn btn-primary" href="mailto:hello@intuneguard.com">Contact Us</a>
+</div>
+</div>
+</section><footer>
+<div class="container footer-grid">
+<div>
+<strong>IntuneGuard</strong>
+<p>Microsoft security and endpoint management for SMEs.</p>
+</div><div>
+<strong>Services</strong>
+<p>Intune</p>
+<p>Identity</p>
+<p>Defender</p>
+</div><div>
+<strong>Company</strong>
+<p>About</p>
+<p>Process</p>
+<p>Contact</p>
+</div><div>
+<strong>Contact</strong>
+<p>hello@intuneguard.com</p>
+<p>+20 100 000 0000</p>
+</div>
+</div><div class="container" style="margin-top:30px;font-size:13px;color:var(--muted)">
+© 2026 IntuneGuard Solutions
+</div>
+</footer><script>
+// FAQ toggle
+const faqs=document.querySelectorAll('.faq-item');
+faqs.forEach(f=>{
+f.addEventListener('click',()=>{
+const ans=f.querySelector('.faq-answer');
+if(!ans)return;
+ans.style.display=ans.style.display==='block'?'none':'block';
+});
+});
+</script></body>
 </html>
