@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://axentro-official.github.io/intuneguard-landing/sitemap.xml
