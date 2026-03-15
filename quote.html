@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Quotation | IntuneGuard Solutions</title>
+<meta name="description" content="Professional quotation page for IntuneGuard Solutions." />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="theme-color" content="#07111f" />
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#07111f;
+  --bg2:#0d1b30;
+  --surface:rgba(255,255,255,.04);
+  --surface-2:rgba(255,255,255,.03);
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.16);
+  --text:#eef4ff;
+  --muted:#aebfd8;
+  --primary:#66b8ff;
+  --accent:#66ffbf;
+  --shadow:0 22px 60px rgba(0,0,0,.35);
+  --radius:22px;
+  --max:1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(102,184,255,.13), transparent 24%),
+    radial-gradient(circle at top right, rgba(102,255,191,.08), transparent 20%),
+    linear-gradient(180deg, #07111f 0%, #0c182a 100%);
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"INTUNEGUARD";
+  position:fixed;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:min(18vw,160px);
+  font-weight:900;
+  letter-spacing:.22em;
+  color:rgba(255,255,255,.028);
+  pointer-events:none;
+  user-select:none;
+  z-index:0;
+  transform:rotate(-18deg);
+}
+
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit}
+
+.page{
+  position:relative;
+  z-index:1;
+  width:min(calc(100% - 28px), var(--max));
+  margin:24px auto 40px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.topbar-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  min-height:46px;
+  padding:0 18px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-weight:800;
+  cursor:pointer;
+  transition:.25s ease;
+}
+.btn:hover{transform:translateY(-2px);border-color:var(--line-strong)}
+.btn-primary{
+  color:#04111c;
+  background:linear-gradient(135deg,var(--primary),var(--accent));
+  border-color:transparent;
+  box-shadow:0 14px 36px rgba(102,184,255,.24);
+}
+
+.quote-shell{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.028));
+  border:1px solid var(--line);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.quote-header{
+  position:relative;
+  padding:28px 28px 18px;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at right top, rgba(102,184,255,.18), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+}
+
+.letterhead{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:20px;
+  align-items:start;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  min-width:0;
+}
+.brand img{
+  width:78px;
+  height:78px;
+  border-radius:20px;
+  object-fit:cover;
+  padding:4px;
+  background:linear-gradient(135deg, rgba(102,184,255,.24), rgba(102,255,191,.18));
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 12px 28px rgba(102,184,255,.18);
+}
+.brand-copy h1{
+  margin:0 0 6px;
+  font-size:clamp(24px,3vw,34px);
+  line-height:1.02;
+}
+.brand-copy p{
+  margin:0;
+  color:var(--muted);
+  max-width:62ch;
+}
+
+.quote-meta{
+  display:grid;
+  gap:12px;
+}
+
+.meta-card{
+  padding:16px 18px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+}
+.meta-title{
+  display:block;
+  margin-bottom:4px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.meta-value{
+  font-size:15px;
+  font-weight:800;
+}
+
+.quote-body{
+  padding:26px 28px 30px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:20px;
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:20px;
+}
+
+.card h2{
+  margin:0 0 14px;
+  font-size:20px;
+}
+.card h3{
+  margin:0 0 12px;
+  font-size:16px;
+}
+.muted{color:var(--muted)}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.field{
+  display:grid;
+  gap:8px;
+}
+.field.full{grid-column:1 / -1}
+.field label{
+  font-size:13px;
+  color:var(--muted);
+  font-weight:700;
+}
+.input, .select, .textarea{
+  width:100%;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+  border-radius:14px;
+  padding:14px 14px;
+  outline:none;
+  transition:.2s ease;
+}
+.input:focus, .select:focus, .textarea:focus{
+  border-color:rgba(102,184,255,.5);
+  box-shadow:0 0 0 4px rgba(102,184,255,.12);
+}
+.textarea{
+  min-height:118px;
+  resize:vertical;
+}
+
+.kv{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:12px;
+  padding:10px 0;
+  border-bottom:1px dashed rgba(255,255,255,.08);
+}
+.kv:last-child{border-bottom:0}
+.kv strong{font-size:14px}
+.kv span{color:var(--muted)}
+
+.service-panel{
+  display:grid;
+  gap:16px;
+}
+
+.highlight-box{
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(102,184,255,.22);
+  background:linear-gradient(135deg, rgba(102,184,255,.12), rgba(102,255,191,.06));
+}
+.highlight-box h3{
+  margin:0 0 8px;
+  font-size:20px;
+}
+.highlight-box p{
+  margin:0;
+  color:#d6e7ff;
+}
+
+.scope-list, .term-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:10px;
+}
+.scope-list li, .term-list li{
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+  color:#dce8fc;
+}
+
+.pricing-table{
+  width:100%;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:18px;
+  border:1px solid var(--line);
+}
+.pricing-table thead th{
+  text-align:left;
+  padding:14px;
+  background:rgba(255,255,255,.05);
+  font-size:13px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.pricing-table td{
+  padding:16px 14px;
+  border-top:1px solid rgba(255,255,255,.06);
+  vertical-align:top;
+}
+.pricing-table tfoot td{
+  background:rgba(255,255,255,.03);
+  font-weight:800;
+}
+
+.signature-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+.sign-box{
+  min-height:130px;
+  padding:18px;
+  border-radius:18px;
+  border:1px dashed rgba(255,255,255,.18);
+  background:rgba(255,255,255,.02);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.sign-line{
+  margin-top:40px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.14);
+  color:var(--muted);
+  font-size:13px;
+}
+
+.footer-note{
+  margin-top:20px;
+  padding:18px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  color:var(--muted);
+  font-size:14px;
+}
+
+.badge-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.badge{
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  font-size:13px;
+  color:var(--muted);
+  font-weight:700;
+}
+
+.print-only{display:none}
+
+@page{
+  size:A4;
+  margin:14mm;
+}
+
+@media (max-width:980px){
+  .letterhead,.grid,.signature-grid,.form-grid{
+    grid-template-columns:1fr;
+  }
+  .kv{
+    grid-template-columns:1fr;
+    gap:6px;
+  }
+}
+
+@media (max-width:640px){
+  .page{width:min(calc(100% - 18px), var(--max));margin:14px auto 24px}
+  .quote-header,.quote-body{padding:18px}
+  .topbar{margin-bottom:14px}
+  .brand img{width:68px;height:68px}
+  .btn{width:100%}
+  .topbar-actions{width:100%}
+}
+
+@media print{
+  body{
+    background:#fff !important;
+    color:#111 !important;
+  }
+  body::before{
+    color:rgba(0,0,0,.035) !important;
+  }
+  .topbar{
+    display:none !important;
+  }
+  .page{
+    width:100%;
+    margin:0;
+  }
+  .quote-shell{
+    border:0;
+    box-shadow:none;
+    background:#fff;
+  }
+  .quote-header{
+    background:#fff !important;
+    border-bottom:1px solid #d9d9d9;
+  }
+  .card, .meta-card, .footer-note, .scope-list li, .term-list li, .highlight-box{
+    background:#fff !important;
+    color:#111 !important;
+    border-color:#d9d9d9 !important;
+    box-shadow:none !important;
+  }
+  .muted, .kv span, .brand-copy p, .footer-note, .field label{
+    color:#444 !important;
+  }
+  .input, .select, .textarea{
+    border-color:#d9d9d9 !important;
+    color:#111 !important;
+    background:#fff !important;
+    box-shadow:none !important;
+  }
+  .pricing-table, .pricing-table thead th, .pricing-table td, .pricing-table tfoot td{
+    color:#111 !important;
+    border-color:#d9d9d9 !important;
+    background:#fff !important;
+  }
+  .print-only{display:block}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="topbar">
+    <div class="badge-row">
+      <span class="badge">Professional Quotation</span>
+      <span class="badge">Print Ready</span>
+      <span class="badge">PDF Friendly</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="btn" type="button" onclick="window.location.href='index.html'">Back to Website</button>
+      <button class="btn btn-primary" type="button" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </div>
+
+  <div class="quote-shell">
+    <div class="quote-header">
+      <div class="letterhead">
+        <div class="brand">
+          <img src="assets/logo.png" alt="IntuneGuard logo">
+          <div class="brand-copy">
+            <h1>IntuneGuard Solutions</h1>
+            <p>Microsoft-first security, endpoint management, identity protection, and operational hardening for modern businesses.</p>
+          </div>
+        </div>
+
+        <div class="quote-meta">
+          <div class="meta-card">
+            <span class="meta-title">Quotation ID</span>
+            <div class="meta-value" id="quoteId">IGS-2026-001</div>
+          </div>
+          <div class="meta-card">
+            <span class="meta-title">Issue Date</span>
+            <div class="meta-value" id="issueDate">2026-03-15</div>
+          </div>
+          <div class="meta-card">
+            <span class="meta-title">Validity</span>
+            <div class="meta-value">14 Calendar Days</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-body">
+      <div class="grid">
+        <div class="card">
+          <h2>Client & Project Information</h2>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="clientName">Client Name</label>
+              <input id="clientName" class="input" type="text" placeholder="Enter client name">
+            </div>
+
+            <div class="field">
+              <label for="companyName">Company Name</label>
+              <input id="companyName" class="input" type="text" placeholder="Enter company name">
+            </div>
+
+            <div class="field">
+              <label for="clientEmail">Client Email</label>
+              <input id="clientEmail" class="input" type="email" placeholder="Enter client email">
+            </div>
+
+            <div class="field">
+              <label for="clientPhone">Client Phone</label>
+              <input id="clientPhone" class="input" type="text" placeholder="Enter phone number">
+            </div>
+
+            <div class="field full">
+              <label for="projectTitle">Project Title</label>
+              <input id="projectTitle" class="input" type="text" placeholder="Example: Microsoft Security Rollout for 45 Users">
+            </div>
+
+            <div class="field full">
+              <label for="projectSummary">Project Summary</label>
+              <textarea id="projectSummary" class="textarea" placeholder="Add a concise summary of the client environment, goals, and business context."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="card service-panel">
+          <h2>Service Configuration</h2>
+
+          <div class="field">
+            <label for="serviceType">Service Type</label>
+            <select id="serviceType" class="select">
+              <option value="intune">Microsoft Intune Deployment</option>
+              <option value="identity">Identity Protection</option>
+              <option value="defender">Endpoint Security</option>
+              <option value="managed">Ongoing Support</option>
+              <option value="custom">Custom Security Package</option>
+            </select>
+          </div>
+
+          <div class="highlight-box">
+            <h3 id="serviceTitle">Microsoft Intune Deployment</h3>
+            <p id="serviceDescription">Deployment and baseline configuration of Microsoft Intune for structured device enrollment, compliance, and application governance.</p>
+          </div>
+
+          <div class="kv"><strong>Estimated Timeline</strong><span id="serviceTimeline">7–14 business days</span></div>
+          <div class="kv"><strong>Commercial Model</strong><span id="serviceCommercial">Fixed project fee</span></div>
+          <div class="kv"><strong>Suggested Fee</strong><span id="servicePrice">USD 1,250</span></div>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:20px;">
+        <div class="card">
+          <h2>Scope of Work</h2>
+          <ul class="scope-list" id="scopeList">
+            <li>Assessment of current device enrollment and management readiness</li>
+            <li>Baseline Intune configuration aligned with business requirements</li>
+            <li>Compliance policies and device restrictions setup</li>
+            <li>Application deployment structure and operational handover</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Commercial Summary</h2>
+          <table class="pricing-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Description</th>
+                <th style="width:160px;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="tableServiceName"><strong>Microsoft Intune Deployment</strong></td>
+                <td id="tableServiceDesc">Project implementation and setup according to agreed scope.</td>
+                <td id="tableServiceAmount">USD 1,250</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">Total Quoted Amount</td>
+                <td id="tableTotal">USD 1,250</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:20px;">
+        <div class="card">
+          <h2>Deliverables</h2>
+          <ul class="scope-list" id="deliverablesList">
+            <li>Configured Microsoft Intune environment</li>
+            <li>Policy baseline and compliance setup</li>
+            <li>Deployment structure for managed applications</li>
+            <li>Handover notes and implementation summary</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Terms & Conditions</h2>
+          <ul class="term-list">
+            <li>Quotation validity: 14 calendar days from issue date.</li>
+            <li>Commercial scope covers only the items explicitly stated in this quotation.</li>
+            <li>Any additional requirements, integrations, or environment changes may require a revised quotation.</li>
+            <li>Execution timeline starts after written approval and required access availability.</li>
+            <li>Taxes, third-party licensing, and platform subscription costs are excluded unless explicitly stated.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:20px;">
+        <div class="card">
+          <h2>Payment Terms</h2>
+          <div class="kv"><strong>Payment Method</strong><span>Bank transfer / agreed commercial channel</span></div>
+          <div class="kv"><strong>Payment Structure</strong><span>50% upfront / 50% on completion</span></div>
+          <div class="kv"><strong>Currency</strong><span>USD unless otherwise agreed</span></div>
+          <div class="kv"><strong>Support Window</strong><span>As stated in final scope or support agreement</span></div>
+        </div>
+
+        <div class="card">
+          <h2>Prepared By</h2>
+          <div class="kv"><strong>Company</strong><span>IntuneGuard Solutions</span></div>
+          <div class="kv"><strong>Email</strong><span>hello@intuneguard.com</span></div>
+          <div class="kv"><strong>Phone</strong><span>+20 100 000 0000</span></div>
+          <div class="kv"><strong>Location</strong><span>Cairo, Egypt</span></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h2>Approval & Signatures</h2>
+        <div class="signature-grid">
+          <div class="sign-box">
+            <div class="sign-line">Authorized Signature — IntuneGuard Solutions</div>
+          </div>
+          <div class="sign-box">
+            <div class="sign-line">Client Signature / Approval</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        This quotation is confidential and intended solely for the named recipient. It may not be reproduced, distributed, or shared without prior written authorization from IntuneGuard Solutions.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const services = {
+  intune: {
+    title: "Microsoft Intune Deployment",
+    description: "Deployment and baseline configuration of Microsoft Intune for structured device enrollment, compliance, and application governance.",
+    timeline: "7–14 business days",
+    commercial: "Fixed project fee",
+    price: "USD 1,250",
+    tableDesc: "Project implementation and setup according to agreed scope.",
+    scope: [
+      "Assessment of current device enrollment and management readiness",
+      "Baseline Intune configuration aligned with business requirements",
+      "Compliance policies and device restrictions setup",
+      "Application deployment structure and operational handover"
+    ],
+    deliverables: [
+      "Configured Microsoft Intune environment",
+      "Policy baseline and compliance setup",
+      "Deployment structure for managed applications",
+      "Handover notes and implementation summary"
+    ]
+  },
+  identity: {
+    title: "Identity Protection",
+    description: "Configuration of Microsoft Entra ID controls including MFA, Conditional Access, SSO readiness, and sign-in protection.",
+    timeline: "5–10 business days",
+    commercial: "Fixed project fee",
+    price: "USD 950",
+    tableDesc: "Identity hardening implementation based on agreed business and access requirements.",
+    scope: [
+      "Review of user access and authentication posture",
+      "MFA planning and rollout configuration",
+      "Conditional Access policy setup",
+      "Identity security baseline and admin handover"
+    ],
+    deliverables: [
+      "Configured MFA policies",
+      "Conditional Access deployment",
+      "Identity security improvement summary",
+      "Operational handover documentation"
+    ]
+  },
+  defender: {
+    title: "Endpoint Security",
+    description: "Microsoft Defender onboarding and endpoint protection implementation for improved threat visibility and device security posture.",
+    timeline: "7–12 business days",
+    commercial: "Fixed project fee",
+    price: "USD 1,150",
+    tableDesc: "Endpoint protection rollout and security posture configuration.",
+    scope: [
+      "Assessment of endpoint security readiness",
+      "Microsoft Defender onboarding and setup",
+      "Core security recommendations and baseline implementation",
+      "Threat visibility workflow alignment"
+    ],
+    deliverables: [
+      "Defender rollout configuration",
+      "Endpoint protection baseline",
+      "Security recommendations summary",
+      "Implementation handover notes"
+    ]
+  },
+  managed: {
+    title: "Ongoing Support",
+    description: "Recurring operational support for Microsoft security stack maintenance, tuning, reporting, and controlled change management.",
+    timeline: "Monthly recurring service",
+    commercial: "Monthly retainer",
+    price: "USD 699 / month",
+    tableDesc: "Managed support service according to agreed monthly scope.",
+    scope: [
+      "Operational monitoring and routine support",
+      "Policy adjustments and change requests within agreed scope",
+      "Monthly posture review and reporting",
+      "Guidance and issue follow-up"
+    ],
+    deliverables: [
+      "Monthly support coverage",
+      "Status updates and recommendations",
+      "Policy tuning within agreed scope",
+      "Recurring service reporting"
+    ]
+  },
+  custom: {
+    title: "Custom Security Package",
+    description: "A tailored service package combining Intune, identity, endpoint security, and support components based on client requirements.",
+    timeline: "To be confirmed after discovery",
+    commercial: "Custom commercial model",
+    price: "Custom Quote",
+    tableDesc: "Custom commercial quotation based on agreed scope and requirements.",
+    scope: [
+      "Discovery and requirement analysis",
+      "Scope definition tailored to business priorities",
+      "Combined Microsoft security workstream planning",
+      "Commercial proposal based on approved scope"
+    ],
+    deliverables: [
+      "Custom scope definition",
+      "Tailored solution architecture summary",
+      "Commercial quotation with phased delivery if needed",
+      "Formal proposal handover"
+    ]
+  }
+};
+
+const serviceType = document.getElementById('serviceType');
+const serviceTitle = document.getElementById('serviceTitle');
+const serviceDescription = document.getElementById('serviceDescription');
+const serviceTimeline = document.getElementById('serviceTimeline');
+const serviceCommercial = document.getElementById('serviceCommercial');
+const servicePrice = document.getElementById('servicePrice');
+const scopeList = document.getElementById('scopeList');
+const deliverablesList = document.getElementById('deliverablesList');
+const tableServiceName = document.getElementById('tableServiceName');
+const tableServiceDesc = document.getElementById('tableServiceDesc');
+const tableServiceAmount = document.getElementById('tableServiceAmount');
+const tableTotal = document.getElementById('tableTotal');
+const issueDate = document.getElementById('issueDate');
+const quoteId = document.getElementById('quoteId');
+
+function setToday() {
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  issueDate.textContent = `${y}-${m}-${d}`;
+  quoteId.textContent = `IGS-${y}-${m}${d}`;
+}
+
+function renderList(target, items) {
+  target.innerHTML = '';
+  items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    target.appendChild(li);
+  });
+}
+
+function updateServiceUI(value) {
+  const item = services[value];
+  if (!item) return;
+
+  serviceTitle.textContent = item.title;
+  serviceDescription.textContent = item.description;
+  serviceTimeline.textContent = item.timeline;
+  serviceCommercial.textContent = item.commercial;
+  servicePrice.textContent = item.price;
+  tableServiceName.innerHTML = `<strong>${item.title}</strong>`;
+  tableServiceDesc.textContent = item.tableDesc;
+  tableServiceAmount.textContent = item.price;
+  tableTotal.textContent = item.price;
+
+  renderList(scopeList, item.scope);
+  renderList(deliverablesList, item.deliverables);
+}
+
+serviceType.addEventListener('change', (e) => updateServiceUI(e.target.value));
+
+setToday();
+updateServiceUI(serviceType.value);
+</script>
+
+</body>
+</html>
