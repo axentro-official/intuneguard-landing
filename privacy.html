@@ -1,166 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Privacy Policy | IntuneGuard Solutions</title>
-
-<meta name="description" content="Privacy policy for IntuneGuard Solutions. Learn how we collect, use and protect your information when using our website and services." />
+<meta name="description" content="Privacy Policy for IntuneGuard Solutions. Learn how we collect, use, protect, and manage information when you use our website or interact with our services." />
 <meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#07111f" />
+<link rel="canonical" href="https://axentro-official.github.io/intuneguard-landing/privacy.html" />
 
-<link rel="canonical" href="https://axentro-official.github.io/intuneguard-landing/privacy.html">
+<meta property="og:title" content="Privacy Policy | IntuneGuard Solutions" />
+<meta property="og:description" content="Learn how IntuneGuard Solutions collects, uses, and protects your information." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://axentro-official.github.io/intuneguard-landing/privacy.html" />
+<meta property="og:site_name" content="IntuneGuard Solutions" />
 
-<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
+:root{
+  --bg:#07111f;
+  --bg2:#0d1b30;
+  --surface:rgba(255,255,255,.04);
+  --line:rgba(255,255,255,.10);
+  --line-strong:rgba(255,255,255,.16);
+  --text:#eef4ff;
+  --muted:#b3c3d9;
+  --primary:#66b8ff;
+  --accent:#66ffbf;
+  --shadow:0 22px 60px rgba(0,0,0,.35);
+  --radius:24px;
+  --max:960px;
+}
 
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:linear-gradient(180deg,#07111f 0%,#0d1b30 100%);
-color:#eef4ff;
-line-height:1.7;
+  margin:0;
+  font-family:'Inter',sans-serif;
+  color:var(--text);
+  line-height:1.75;
+  background:
+    radial-gradient(circle at top left, rgba(102,184,255,.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(102,255,191,.08), transparent 20%),
+    linear-gradient(180deg,#07111f 0%,#0d1b30 100%);
+}
+
+body::before{
+  content:"PRIVACY";
+  position:fixed;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:min(18vw,140px);
+  font-weight:900;
+  letter-spacing:.18em;
+  color:rgba(255,255,255,.025);
+  transform:rotate(-18deg);
+  pointer-events:none;
+  user-select:none;
 }
 
 .wrap{
-width:min(calc(100% - 32px),900px);
-margin:auto;
-padding:60px 0;
+  position:relative;
+  z-index:1;
+  width:min(calc(100% - 28px),var(--max));
+  margin:28px auto 44px;
 }
 
-.card{
-background:rgba(255,255,255,0.04);
-border:1px solid rgba(255,255,255,0.10);
-border-radius:24px;
-padding:36px;
-box-shadow:0 20px 40px rgba(0,0,0,.35);
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
 }
 
-h1{
-margin-top:0;
-font-size:clamp(32px,4vw,46px);
+.badge-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-h2{
-margin-top:32px;
-font-size:22px;
+.badge{
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+}
+
+.btn{
+  min-height:46px;
+  padding:0 18px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+  color:var(--text);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  transition:.25s ease;
+}
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:var(--line-strong);
+}
+
+.shell{
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.028));
+  border:1px solid var(--line);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.header{
+  padding:30px 30px 22px;
+  border-bottom:1px solid var(--line);
+  background:
+    radial-gradient(circle at right top, rgba(102,184,255,.18), transparent 28%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+}
+
+.header h1{
+  margin:0 0 10px;
+  font-size:clamp(30px,4vw,46px);
+  line-height:1.04;
+}
+
+.header p{
+  margin:0;
+  color:var(--muted);
+  max-width:70ch;
+}
+
+.content{
+  padding:28px 30px 34px;
+}
+
+.section{
+  padding:0 0 22px;
+  border-bottom:1px dashed rgba(255,255,255,.08);
+  margin-bottom:22px;
+}
+.section:last-child{
+  border-bottom:0;
+  margin-bottom:0;
+  padding-bottom:0;
+}
+
+.section h2{
+  margin:0 0 12px;
+  font-size:22px;
 }
 
 p{
-color:#b3c3d9;
+  margin:0 0 12px;
+  color:var(--muted);
 }
 
+ul{
+  margin:0;
+  padding-left:20px;
+}
 li{
-color:#b3c3d9;
-margin-bottom:6px;
+  margin-bottom:8px;
+  color:var(--muted);
 }
 
-a{
-color:#7fe7ff;
-text-decoration:none;
+strong{
+  color:var(--text);
 }
 
-.back{
-display:inline-block;
-margin-top:30px;
-font-weight:600;
+.note{
+  margin-top:18px;
+  padding:16px 18px;
+  border-radius:18px;
+  border:1px solid rgba(102,184,255,.22);
+  background:linear-gradient(135deg, rgba(102,184,255,.10), rgba(102,255,191,.05));
+  color:#d9ebff;
 }
 
+.contact-box{
+  padding:18px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+}
+
+.contact-box a{
+  color:#8fe5ff;
+  text-decoration:none;
+}
+
+.footer-note{
+  margin-top:22px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+@media (max-width:640px){
+  .wrap{
+    width:min(calc(100% - 18px),var(--max));
+    margin:18px auto 28px;
+  }
+  .header,.content{
+    padding:20px 18px;
+  }
+  .topbar{
+    margin-bottom:12px;
+  }
+}
 </style>
 </head>
-
 <body>
 
 <div class="wrap">
+  <div class="topbar">
+    <div class="badge-row">
+      <span class="badge">Privacy Policy</span>
+      <span class="badge">Global Use</span>
+      <span class="badge">Professional Services</span>
+    </div>
+    <a class="btn" href="index.html">← Back to Home</a>
+  </div>
 
-<div class="card">
+  <div class="shell">
+    <div class="header">
+      <h1>Privacy Policy</h1>
+      <p>
+        This Privacy Policy explains how <strong>IntuneGuard Solutions</strong> collects, uses, stores, and protects information when you visit our website, contact us, or engage with our services.
+      </p>
+    </div>
 
-<h1>Privacy Policy</h1>
+    <div class="content">
 
-<p>
-This Privacy Policy describes how <strong>IntuneGuard Solutions</strong> collects, uses, and protects your information when you use our website or interact with our services.
-</p>
+      <section class="section">
+        <h2>1. Who We Are</h2>
+        <p>
+          IntuneGuard Solutions provides Microsoft-first security, endpoint management, identity protection, and related consulting or implementation services for businesses.
+        </p>
+      </section>
 
-<h2>Information We Collect</h2>
+      <section class="section">
+        <h2>2. Information We May Collect</h2>
+        <p>We may collect and process information such as:</p>
+        <ul>
+          <li>Name, company name, job title, and contact information</li>
+          <li>Email address and phone number when you contact us or request a quotation</li>
+          <li>Information you voluntarily provide through email, forms, messaging applications, or consultation requests</li>
+          <li>Technical usage information such as browser type, device type, IP address, referral source, and basic analytics data</li>
+        </ul>
+      </section>
 
-<p>We may collect the following types of information:</p>
+      <section class="section">
+        <h2>3. How We Use Information</h2>
+        <p>We may use collected information for the following purposes:</p>
+        <ul>
+          <li>Responding to inquiries, quotations, and consultation requests</li>
+          <li>Providing, managing, and improving our services</li>
+          <li>Communicating operational, technical, or commercial information relevant to our engagement</li>
+          <li>Maintaining website functionality, performance, and security</li>
+          <li>Complying with legal, contractual, or legitimate business requirements</li>
+        </ul>
+      </section>
 
-<ul>
-<li>Name and contact details when you communicate with us</li>
-<li>Email address when contacting support or requesting consultation</li>
-<li>Basic technical information such as browser type and device information</li>
-<li>Information voluntarily provided through contact forms or communication channels</li>
-</ul>
+      <section class="section">
+        <h2>4. Legal Basis and Business Purpose</h2>
+        <p>
+          Where applicable, we process information based on legitimate business interest, contractual necessity, consent, or legal obligations, depending on the context in which the information was provided.
+        </p>
+      </section>
 
-<h2>How We Use Information</h2>
+      <section class="section">
+        <h2>5. Data Sharing</h2>
+        <p>
+          We do not sell personal information. We may share limited information only where reasonably necessary, including:
+        </p>
+        <ul>
+          <li>With service providers or technical platforms supporting communication, hosting, analytics, or operations</li>
+          <li>With professional advisers where required for business, compliance, or legal purposes</li>
+          <li>Where disclosure is required by law, regulation, or legitimate legal process</li>
+        </ul>
+      </section>
 
-<p>Your information may be used for the following purposes:</p>
+      <section class="section">
+        <h2>6. Data Retention</h2>
+        <p>
+          We retain information only for as long as reasonably necessary for business, operational, contractual, security, or legal purposes, after which it may be deleted, anonymized, or securely archived where appropriate.
+        </p>
+      </section>
 
-<ul>
-<li>Responding to inquiries and consultation requests</li>
-<li>Providing and improving our services</li>
-<li>Communicating important updates related to services</li>
-<li>Ensuring website security and reliability</li>
-</ul>
+      <section class="section">
+        <h2>7. Cookies and Analytics</h2>
+        <p>
+          Our website may use cookies, analytics, or similar technologies to improve user experience, analyze traffic, and understand website usage patterns. These tools may collect non-sensitive technical and behavioral information.
+        </p>
+      </section>
 
-<h2>Data Protection</h2>
+      <section class="section">
+        <h2>8. Data Security</h2>
+        <p>
+          We implement reasonable technical and organizational safeguards designed to protect information against unauthorized access, misuse, disclosure, alteration, or destruction. However, no method of transmission or storage can be guaranteed to be absolutely secure.
+        </p>
+      </section>
 
-<p>
-We take reasonable technical and organizational measures to protect your information against unauthorized access, disclosure, or misuse.
-</p>
+      <section class="section">
+        <h2>9. International Use</h2>
+        <p>
+          If you access our website or services from outside our operating jurisdiction, you acknowledge that information may be processed, stored, or accessed in locations where data protection rules may differ from those in your country.
+        </p>
+      </section>
 
-<h2>Third-Party Services</h2>
+      <section class="section">
+        <h2>10. Third-Party Links</h2>
+        <p>
+          Our website may contain links to third-party websites, platforms, or services. We are not responsible for the privacy, security, or content practices of external websites not operated by IntuneGuard Solutions.
+        </p>
+      </section>
 
-<p>
-Our website may contain links to third-party services such as LinkedIn or external platforms. We are not responsible for the privacy practices of those websites.
-</p>
+      <section class="section">
+        <h2>11. Your Rights</h2>
+        <p>Depending on applicable law, you may have rights including:</p>
+        <ul>
+          <li>Requesting access to personal information we may hold about you</li>
+          <li>Requesting correction of inaccurate or incomplete information</li>
+          <li>Requesting deletion where legally and operationally applicable</li>
+          <li>Objecting to certain uses of your information</li>
+          <li>Requesting clarification regarding how your information is handled</li>
+        </ul>
+      </section>
 
-<h2>Cookies</h2>
+      <section class="section">
+        <h2>12. Children's Privacy</h2>
+        <p>
+          Our website and services are intended for business and professional use. They are not directed to children, and we do not knowingly collect personal information from children.
+        </p>
+      </section>
 
-<p>
-This website may use basic cookies or analytics tools to improve performance and understand visitor behavior.
-</p>
+      <section class="section">
+        <h2>13. Policy Updates</h2>
+        <p>
+          We may update this Privacy Policy from time to time to reflect changes in business operations, technical practices, legal requirements, or service structure. The latest version will always be published on this page.
+        </p>
+        <div class="note">
+          <strong>Last updated:</strong> 2026
+        </div>
+      </section>
 
-<h2>Your Rights</h2>
+      <section class="section">
+        <h2>14. Contact Us</h2>
+        <div class="contact-box">
+          <p><strong>Company:</strong> IntuneGuard Solutions</p>
+          <p><strong>Email:</strong> <a href="mailto:hello@intuneguard.com">hello@intuneguard.com</a></p>
+          <p><strong>Location:</strong> Cairo, Egypt</p>
+        </div>
+      </section>
 
-<p>You may contact us at any time to:</p>
+      <div class="footer-note">
+        This Privacy Policy is provided for general informational and operational transparency purposes and should be reviewed and adapted if you require jurisdiction-specific legal compliance language.
+      </div>
 
-<ul>
-<li>Request access to personal information we may hold</li>
-<li>Request correction or deletion of your information</li>
-<li>Ask questions about our privacy practices</li>
-</ul>
-
-<h2>Contact</h2>
-
-<p>
-If you have questions regarding this Privacy Policy, please contact:
-</p>
-
-<p>
-<strong>Email:</strong> hello@intuneguard.com
-</p>
-
-<h2>Policy Updates</h2>
-
-<p>
-This policy may be updated periodically to reflect operational or legal changes. Updates will be published on this page.
-</p>
-
-<p>
-Last updated: 2026
-</p>
-
-<a class="back" href="index.html">← Back to Home</a>
-
-</div>
-
+    </div>
+  </div>
 </div>
 
 </body>
