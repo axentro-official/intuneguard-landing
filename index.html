@@ -6,7 +6,9 @@
 
 <title>IntuneGuard Solutions | Microsoft Security & Endpoint Management</title>
 <meta name="description" content="IntuneGuard Solutions provides Microsoft-first endpoint management, identity protection and cloud security for growing businesses." />
+<meta name="author" content="Axentro" />
 <meta name="robots" content="index,follow,max-image-preview:large" />
+<meta name="theme-color" content="#06101c" />
 <link rel="canonical" href="https://axentro-official.github.io/intuneguard-landing/" />
 
 <meta property="og:title" content="IntuneGuard Solutions | Microsoft Security & Endpoint Management" />
@@ -14,16 +16,19 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://axentro-official.github.io/intuneguard-landing/" />
 <meta property="og:site_name" content="IntuneGuard Solutions" />
+<meta property="og:locale" content="en_US" />
 <meta property="og:image" content="https://axentro-official.github.io/intuneguard-landing/assets/og-cover.jpg" />
 <meta property="og:image:secure_url" content="https://axentro-official.github.io/intuneguard-landing/assets/og-cover.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="IntuneGuard Solutions Microsoft Security for SMEs preview image" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="IntuneGuard Solutions | Microsoft Security & Endpoint Management" />
 <meta name="twitter:description" content="IntuneGuard Solutions provides Microsoft-first endpoint management, identity protection and cloud security for growing businesses." />
 <meta name="twitter:image" content="https://axentro-official.github.io/intuneguard-landing/assets/og-cover.jpg" />
+<meta name="twitter:image:alt" content="IntuneGuard Solutions Microsoft Security for SMEs preview image" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
 <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
@@ -35,6 +40,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="assets/hero-security.webp" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
@@ -81,6 +87,15 @@
     "@type": "Organization",
     "name": "IntuneGuard Solutions"
   }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "IntuneGuard Solutions",
+  "url": "https://axentro-official.github.io/intuneguard-landing/"
 }
 </script>
 
@@ -609,7 +624,7 @@ footer{
       <a class="btn btn-primary" href="#contact">Book Consultation</a>
     </div>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu" type="button">☰</button>
   </div>
 
   <div class="container mobile-menu" id="mobileMenu">
@@ -645,7 +660,7 @@ footer{
         <div class="glow-orb hero-orb-2"></div>
 
         <div class="hero-image-wrap">
-          <img src="assets/hero-security.webp" alt="IntuneGuard cybersecurity illustration">
+          <img src="assets/hero-security.webp" alt="IntuneGuard cybersecurity illustration" loading="eager" fetchpriority="high">
         </div>
 
         <div class="dashboard">
@@ -828,15 +843,15 @@ footer{
     </div>
     <div class="faq">
       <div class="faq-item reveal">
-        <button class="faq-question"><span>Do you work only with Microsoft environments?</span><span class="faq-icon">+</span></button>
+        <button class="faq-question" type="button" aria-expanded="false"><span>Do you work only with Microsoft environments?</span><span class="faq-icon">+</span></button>
         <div class="faq-answer"><p>Yes. The positioning is Microsoft-first so the service remains specialized, clear and commercially focused.</p></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-question"><span>What size of company is the best fit?</span><span class="faq-icon">+</span></button>
+        <button class="faq-question" type="button" aria-expanded="false"><span>What size of company is the best fit?</span><span class="faq-icon">+</span></button>
         <div class="faq-answer"><p>The strongest fit is usually SMEs in the 5 to 200 employee range that need stronger controls without building a full internal security team.</p></div>
       </div>
       <div class="faq-item reveal">
-        <button class="faq-question"><span>Do you offer ongoing support?</span><span class="faq-icon">+</span></button>
+        <button class="faq-question" type="button" aria-expanded="false"><span>Do you offer ongoing support?</span><span class="faq-icon">+</span></button>
         <div class="faq-answer"><p>Yes. The site supports both one-time implementation projects and recurring managed support models.</p></div>
       </div>
     </div>
@@ -929,15 +944,19 @@ footer{
 <script>
 const menuToggle = document.getElementById('menuToggle');
 const mobileMenu = document.getElementById('mobileMenu');
+
 menuToggle?.addEventListener('click', () => {
   mobileMenu.classList.toggle('open');
-  menuToggle.textContent = mobileMenu.classList.contains('open') ? '✕' : '☰';
+  const isOpen = mobileMenu.classList.contains('open');
+  menuToggle.textContent = isOpen ? '✕' : '☰';
+  menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 });
 
 document.querySelectorAll('.mobile-menu a').forEach(link => {
   link.addEventListener('click', () => {
     mobileMenu.classList.remove('open');
     menuToggle.textContent = '☰';
+    menuToggle.setAttribute('aria-expanded', 'false');
   });
 });
 
@@ -946,8 +965,15 @@ faqItems.forEach(item => {
   const btn = item.querySelector('.faq-question');
   btn.addEventListener('click', () => {
     const isOpen = item.classList.contains('open');
-    faqItems.forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    faqItems.forEach(i => {
+      i.classList.remove('open');
+      const q = i.querySelector('.faq-question');
+      q?.setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
   });
 });
 
