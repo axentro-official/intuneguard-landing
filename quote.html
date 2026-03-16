@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#07111f" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
-<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
+<link rel="icon" type="image/png" sizes="64x32" href="assets/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -76,26 +76,28 @@ button,input,select,textarea{font:inherit}
   z-index:0;
   overflow:hidden;
 }
-.quote-watermark::before,
-.quote-watermark::after{
-  content:"INTUNEGUARD SOLUTIONS";
+
+.quote-watermark .wm-line{
   position:absolute;
   left:50%;
   transform:translateX(-50%) rotate(-24deg);
   font-weight:900;
-  letter-spacing:.22em;
+  letter-spacing:.18em;
   white-space:nowrap;
-  color:rgba(255,255,255,.032);
   user-select:none;
+  color:rgba(255,255,255,.040);
+  font-size:min(6.5vw,58px);
+  line-height:1;
 }
-.quote-watermark::before{
-  top:18%;
-  font-size:min(12vw,110px);
-}
-.quote-watermark::after{
-  top:62%;
-  font-size:min(11vw,96px);
-}
+
+.quote-watermark .wm-1{top:7%}
+.quote-watermark .wm-2{top:19%}
+.quote-watermark .wm-3{top:31%}
+.quote-watermark .wm-4{top:43%}
+.quote-watermark .wm-5{top:55%}
+.quote-watermark .wm-6{top:67%}
+.quote-watermark .wm-7{top:79%}
+.quote-watermark .wm-8{top:91%}
 
 .page{
   position:relative;
@@ -178,18 +180,19 @@ button,input,select,textarea{font:inherit}
 .brand{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:18px;
   min-width:0;
 }
 .brand img{
-  width:82px;
-  height:82px;
-  border-radius:22px;
+  width:112px;
+  height:112px;
+  border-radius:24px;
   object-fit:cover;
-  padding:4px;
+  padding:5px;
   background:linear-gradient(135deg, rgba(102,184,255,.24), rgba(102,255,191,.18));
   border:1px solid rgba(255,255,255,.12);
   box-shadow:0 12px 28px rgba(102,184,255,.18);
+  flex:0 0 auto;
 }
 .brand-copy h1{
   margin:0 0 6px;
@@ -450,9 +453,13 @@ button,input,select,textarea{font:inherit}
   .page{width:min(calc(100% - 18px), var(--max));margin:14px auto 24px}
   .quote-header,.quote-body{padding:18px}
   .topbar{margin-bottom:14px}
-  .brand img{width:68px;height:68px}
+  .brand img{width:88px;height:88px}
   .btn{width:100%}
   .topbar-actions{width:100%}
+  .quote-watermark .wm-line{
+    font-size:min(9vw,46px);
+    letter-spacing:.14em;
+  }
 }
 
 @media print{
@@ -468,15 +475,16 @@ button,input,select,textarea{font:inherit}
   }
 
   .quote-watermark{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    pointer-events:none;
+    position:fixed !important;
+    inset:0 !important;
+    z-index:0 !important;
+    pointer-events:none !important;
   }
 
-  .quote-watermark::before,
-  .quote-watermark::after{
-    color:rgba(17,24,39,.055) !important;
+  .quote-watermark .wm-line{
+    color:rgba(17,24,39,.060) !important;
+    font-size:44px !important;
+    letter-spacing:.16em !important;
   }
 
   .topbar{
@@ -505,6 +513,30 @@ button,input,select,textarea{font:inherit}
   .quote-header{
     background:#fff !important;
     border-bottom:1px solid var(--paper-line) !important;
+    padding-bottom:20px !important;
+  }
+
+  .letterhead{
+    grid-template-columns:1fr !important;
+    gap:18px !important;
+  }
+
+  .brand{
+    align-items:flex-start !important;
+  }
+
+  .brand img{
+    width:118px !important;
+    height:118px !important;
+    background:#fff !important;
+    box-shadow:none !important;
+    border-color:#d9e1ea !important;
+  }
+
+  .quote-meta{
+    display:grid !important;
+    grid-template-columns:repeat(3, 1fr) !important;
+    gap:10px !important;
   }
 
   .card,
@@ -519,6 +551,16 @@ button,input,select,textarea{font:inherit}
     box-shadow:none !important;
   }
 
+  .meta-card{
+    page-break-inside:avoid !important;
+    break-inside:avoid !important;
+  }
+
+  .meta-title,
+  .meta-value{
+    color:var(--paper-text) !important;
+  }
+
   .card::before{
     display:none !important;
   }
@@ -527,8 +569,7 @@ button,input,select,textarea{font:inherit}
   .kv span,
   .brand-copy p,
   .footer-note,
-  .field label,
-  .meta-title{
+  .field label{
     color:var(--paper-muted) !important;
   }
 
@@ -576,18 +617,31 @@ button,input,select,textarea{font:inherit}
 
   .print-only{display:block}
 }
+
+@media print and (max-width:980px){
+  .quote-meta{
+    grid-template-columns:1fr !important;
+  }
+}
 </style>
 </head>
 <body>
 
-<div class="quote-watermark" aria-hidden="true"></div>
+<div class="quote-watermark" aria-hidden="true">
+  <span class="wm-line wm-1">INTUNEGUARD SOLUTIONS</span>
+  <span class="wm-line wm-2">INTUNEGUARD SOLUTIONS</span>
+  <span class="wm-line wm-3">INTUNEGUARD SOLUTIONS</span>
+  <span class="wm-line wm-4">INTUNEGUARD SOLUTIONS</span>
+  <span class="wm-line wm-5">INTUNEGUARD SOLUTIONS</span>
+  <span class="wm-line wm-6">INTUNEGUARD SOLUTIONS</span>
+  <span class="wm-line wm-7">INTUNEGUARD SOLUTIONS</span>
+  <span class="wm-line wm-8">INTUNEGUARD SOLUTIONS</span>
+</div>
 
 <div class="page">
   <div class="topbar">
     <div class="badge-row">
       <span class="badge">Professional Quotation</span>
-      <span class="badge">Print Ready</span>
-      <span class="badge">PDF Friendly</span>
     </div>
     <div class="topbar-actions">
       <button class="btn btn-primary" type="button" onclick="window.print()">Print / Save as PDF</button>
