@@ -83,18 +83,18 @@ button,input,select,textarea{font:inherit}
   left:50%;
   transform:translateX(-50%) rotate(-24deg);
   font-weight:900;
-  letter-spacing:.14em;
+  letter-spacing:.22em;
   white-space:nowrap;
-  color:rgba(255,255,255,.035);
+  color:rgba(255,255,255,.032);
   user-select:none;
 }
 .quote-watermark::before{
-  top:17%;
-  font-size:min(8.4vw,78px);
+  top:18%;
+  font-size:min(12vw,110px);
 }
 .quote-watermark::after{
-  top:66%;
-  font-size:min(8vw,72px);
+  top:62%;
+  font-size:min(11vw,96px);
 }
 
 .page{
@@ -178,13 +178,13 @@ button,input,select,textarea{font:inherit}
 .brand{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:16px;
   min-width:0;
 }
 .brand img{
-  width:96px;
-  height:96px;
-  border-radius:24px;
+  width:82px;
+  height:82px;
+  border-radius:22px;
   object-fit:cover;
   padding:4px;
   background:linear-gradient(135deg, rgba(102,184,255,.24), rgba(102,255,191,.18));
@@ -429,6 +429,8 @@ button,input,select,textarea{font:inherit}
   page-break-inside:avoid;
 }
 
+.print-only{display:none}
+
 @page{
   size:A4;
   margin:12mm;
@@ -448,17 +450,9 @@ button,input,select,textarea{font:inherit}
   .page{width:min(calc(100% - 18px), var(--max));margin:14px auto 24px}
   .quote-header,.quote-body{padding:18px}
   .topbar{margin-bottom:14px}
-  .brand img{width:78px;height:78px}
+  .brand img{width:68px;height:68px}
   .btn{width:100%}
   .topbar-actions{width:100%}
-  .quote-watermark::before{
-    font-size:min(10vw,58px);
-    top:20%;
-  }
-  .quote-watermark::after{
-    font-size:min(9.5vw,52px);
-    top:70%;
-  }
 }
 
 @media print{
@@ -474,14 +468,15 @@ button,input,select,textarea{font:inherit}
   }
 
   .quote-watermark{
-    display:none !important;
+    position:fixed;
+    inset:0;
+    z-index:0;
+    pointer-events:none;
   }
 
-  body{
-    background-image:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='794' height='1123' viewBox='0 0 794 1123'><g transform='rotate(-24 397 561)'><text x='397' y='270' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='56' font-weight='800' letter-spacing='8' fill='rgba(17,24,39,0.05)'>INTUNEGUARD SOLUTIONS</text><text x='397' y='830' text-anchor='middle' font-family='Inter, Arial, sans-serif' font-size='56' font-weight='800' letter-spacing='8' fill='rgba(17,24,39,0.05)'>INTUNEGUARD SOLUTIONS</text></g></svg>") !important;
-    background-repeat:repeat !important;
-    background-size:100% 100% !important;
+  .quote-watermark::before,
+  .quote-watermark::after{
+    color:rgba(17,24,39,.055) !important;
   }
 
   .topbar{
@@ -498,7 +493,7 @@ button,input,select,textarea{font:inherit}
   .quote-shell{
     border:0 !important;
     box-shadow:none !important;
-    background:transparent !important;
+    background:#fff !important;
     border-radius:0 !important;
     overflow:visible !important;
   }
@@ -508,7 +503,7 @@ button,input,select,textarea{font:inherit}
   }
 
   .quote-header{
-    background:transparent !important;
+    background:#fff !important;
     border-bottom:1px solid var(--paper-line) !important;
   }
 
@@ -518,7 +513,7 @@ button,input,select,textarea{font:inherit}
   .scope-list li,
   .term-list li,
   .highlight-box{
-    background:rgba(255,255,255,.92) !important;
+    background:#fff !important;
     color:var(--paper-text) !important;
     border-color:var(--paper-line) !important;
     box-shadow:none !important;
@@ -537,46 +532,31 @@ button,input,select,textarea{font:inherit}
     color:var(--paper-muted) !important;
   }
 
-  .brand-copy h1,
-  .card h2,
-  .card h3,
-  .meta-value,
-  .kv strong,
-  .pricing-table,
-  .pricing-table thead th,
-  .pricing-table td,
-  .pricing-table tfoot td,
-  .sign-line{
-    color:var(--paper-text) !important;
-  }
-
   .input,
   .select,
   .textarea{
     border-color:var(--paper-line) !important;
     color:var(--paper-text) !important;
-    background:rgba(255,255,255,.96) !important;
+    background:#fff !important;
     box-shadow:none !important;
   }
 
-  .pricing-table{
+  .pricing-table,
+  .pricing-table thead th,
+  .pricing-table td,
+  .pricing-table tfoot td{
+    color:var(--paper-text) !important;
     border-color:var(--paper-line) !important;
+    background:#fff !important;
   }
 
   .pricing-table thead th{
     background:#f7f9fc !important;
-    border-color:var(--paper-line) !important;
-  }
-
-  .pricing-table td,
-  .pricing-table tfoot td{
-    border-color:var(--paper-line) !important;
-    background:rgba(255,255,255,.96) !important;
   }
 
   .sign-box{
     border-color:#c9d3df !important;
-    background:rgba(255,255,255,.94) !important;
+    background:#fff !important;
   }
 
   .badge{
@@ -589,19 +569,12 @@ button,input,select,textarea{font:inherit}
   .card,
   .footer-note,
   .grid,
-  .signature-grid,
-  .pricing-table{
+  .signature-grid{
     break-inside:avoid;
     page-break-inside:avoid;
   }
 
-  .grid{
-    gap:14px !important;
-  }
-
-  .quote-body{
-    padding:20px 22px 24px !important;
-  }
+  .print-only{display:block}
 }
 </style>
 </head>
@@ -613,6 +586,8 @@ button,input,select,textarea{font:inherit}
   <div class="topbar">
     <div class="badge-row">
       <span class="badge">Professional Quotation</span>
+      <span class="badge">Print Ready</span>
+      <span class="badge">PDF Friendly</span>
     </div>
     <div class="topbar-actions">
       <button class="btn btn-primary" type="button" onclick="window.print()">Print / Save as PDF</button>
@@ -650,7 +625,7 @@ button,input,select,textarea{font:inherit}
     <div class="quote-body">
       <div class="grid">
         <div class="card avoid-break">
-          <h2>Client &amp; Project Information</h2>
+          <h2>Client & Project Information</h2>
 
           <div class="form-grid">
             <div class="field">
@@ -760,7 +735,7 @@ button,input,select,textarea{font:inherit}
         </div>
 
         <div class="card avoid-break">
-          <h2>Terms &amp; Conditions</h2>
+          <h2>Terms & Conditions</h2>
           <ul class="term-list">
             <li>Quotation validity: 14 calendar days from issue date.</li>
             <li>Commercial scope covers only the items explicitly stated in this quotation.</li>
@@ -790,7 +765,7 @@ button,input,select,textarea{font:inherit}
       </div>
 
       <div class="card avoid-break" style="margin-top:20px;">
-        <h2>Approval &amp; Signatures</h2>
+        <h2>Approval & Signatures</h2>
         <div class="signature-grid">
           <div class="sign-box">
             <div class="sign-line">Authorized Signature — IntuneGuard Solutions</div>
