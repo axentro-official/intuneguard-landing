@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#07111f" />
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
-<link rel="icon" type="image/png" sizes="64x32" href="assets/favicon.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +50,7 @@ body{
     radial-gradient(circle at top right, rgba(102,255,191,.08), transparent 20%),
     linear-gradient(180deg, #07111f 0%, #0c182a 100%);
   overflow-x:hidden;
+  position:relative;
 }
 
 body::before{
@@ -470,21 +471,36 @@ button,input,select,textarea{font:inherit}
     print-color-adjust:exact;
   }
 
+  body{
+    overflow:visible !important;
+  }
+
   body::before{
     display:none !important;
   }
 
-  .quote-watermark{
-    position:fixed !important;
-    inset:0 !important;
-    z-index:0 !important;
-    pointer-events:none !important;
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    background-repeat:repeat;
+    background-position:center center;
+    background-size:420px 420px;
+    opacity:1;
+    background-image:url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'>\
+<g transform='rotate(-28 210 210)'>\
+<text x='10' y='110' fill='rgba(17,24,39,0.065)' font-family='Inter,Arial,sans-serif' font-size='34' font-weight='900' letter-spacing='4'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-10' y='230' fill='rgba(17,24,39,0.065)' font-family='Inter,Arial,sans-serif' font-size='34' font-weight='900' letter-spacing='4'>INTUNEGUARD SOLUTIONS</text>\
+<text x='20' y='350' fill='rgba(17,24,39,0.065)' font-family='Inter,Arial,sans-serif' font-size='34' font-weight='900' letter-spacing='4'>INTUNEGUARD SOLUTIONS</text>\
+</g>\
+</svg>");
   }
 
-  .quote-watermark .wm-line{
-    color:rgba(17,24,39,.060) !important;
-    font-size:44px !important;
-    letter-spacing:.16em !important;
+  .quote-watermark{
+    display:none !important;
   }
 
   .topbar{
@@ -513,16 +529,20 @@ button,input,select,textarea{font:inherit}
   .quote-header{
     background:#fff !important;
     border-bottom:1px solid var(--paper-line) !important;
-    padding-bottom:20px !important;
+    padding:22px 0 18px !important;
+    break-inside:avoid !important;
+    page-break-inside:avoid !important;
   }
 
   .letterhead{
-    grid-template-columns:1fr !important;
-    gap:18px !important;
+    display:block !important;
   }
 
   .brand{
+    display:flex !important;
     align-items:flex-start !important;
+    gap:16px !important;
+    margin-bottom:18px !important;
   }
 
   .brand img{
@@ -533,10 +553,55 @@ button,input,select,textarea{font:inherit}
     border-color:#d9e1ea !important;
   }
 
+  .brand-copy{
+    min-width:0 !important;
+  }
+
+  .brand-copy h1{
+    margin:0 0 6px !important;
+  }
+
+  .brand-copy p{
+    margin:0 !important;
+  }
+
   .quote-meta{
-    display:grid !important;
-    grid-template-columns:repeat(3, 1fr) !important;
+    display:flex !important;
     gap:10px !important;
+    flex-wrap:nowrap !important;
+    align-items:stretch !important;
+    width:100% !important;
+    margin-top:0 !important;
+  }
+
+  .quote-meta .meta-card{
+    display:block !important;
+    flex:1 1 0 !important;
+    min-width:0 !important;
+    padding:14px 16px !important;
+    background:#fff !important;
+    border:1px solid var(--paper-line) !important;
+    border-radius:14px !important;
+    page-break-inside:avoid !important;
+    break-inside:avoid !important;
+  }
+
+  .meta-title{
+    display:block !important;
+    margin-bottom:6px !important;
+    color:var(--paper-muted) !important;
+    font-size:11px !important;
+    font-weight:800 !important;
+    text-transform:uppercase !important;
+    letter-spacing:.08em !important;
+  }
+
+  .meta-value{
+    display:block !important;
+    color:var(--paper-text) !important;
+    font-size:14px !important;
+    font-weight:800 !important;
+    line-height:1.3 !important;
   }
 
   .card,
@@ -549,16 +614,6 @@ button,input,select,textarea{font:inherit}
     color:var(--paper-text) !important;
     border-color:var(--paper-line) !important;
     box-shadow:none !important;
-  }
-
-  .meta-card{
-    page-break-inside:avoid !important;
-    break-inside:avoid !important;
-  }
-
-  .meta-title,
-  .meta-value{
-    color:var(--paper-text) !important;
   }
 
   .card::before{
@@ -618,9 +673,17 @@ button,input,select,textarea{font:inherit}
   .print-only{display:block}
 }
 
-@media print and (max-width:980px){
+@media print and (max-width:760px){
   .quote-meta{
-    grid-template-columns:1fr !important;
+    display:block !important;
+  }
+
+  .quote-meta .meta-card{
+    margin-bottom:10px !important;
+  }
+
+  .quote-meta .meta-card:last-child{
+    margin-bottom:0 !important;
   }
 }
 </style>
