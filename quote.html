@@ -231,6 +231,45 @@ button,input,select,textarea{font:inherit}
   font-weight:800;
 }
 
+.print-meta-row{
+  display:none;
+}
+
+.print-meta-table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+.print-meta-table td{
+  width:33.333%;
+  padding:0 8px;
+  vertical-align:top;
+}
+
+.print-meta-box{
+  border:1px solid var(--paper-line);
+  border-radius:14px;
+  background:#fff;
+  padding:12px 14px;
+}
+
+.print-meta-box .print-meta-title{
+  display:block;
+  margin-bottom:6px;
+  color:var(--paper-muted);
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.print-meta-box .print-meta-value{
+  color:var(--paper-text);
+  font-size:15px;
+  font-weight:800;
+}
+
 .quote-body{
   padding:26px 28px 30px;
 }
@@ -434,6 +473,10 @@ button,input,select,textarea{font:inherit}
 
 .print-only{display:none}
 
+.print-watermark-block{
+  display:none;
+}
+
 @page{
   size:A4;
   margin:12mm;
@@ -470,14 +513,8 @@ button,input,select,textarea{font:inherit}
     print-color-adjust:exact;
   }
 
-  body::before{
-    display:none !important;
-  }
-
-  .quote-watermark{
-    display:none !important;
-  }
-
+  body::before,
+  .quote-watermark,
   .topbar{
     display:none !important;
   }
@@ -492,21 +529,9 @@ button,input,select,textarea{font:inherit}
   .quote-shell{
     border:0 !important;
     box-shadow:none !important;
-    background-color:#fff !important;
+    background:#fff !important;
     border-radius:0 !important;
     overflow:visible !important;
-    background-image:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'>\
-<g transform='rotate(-24 450 450)'>\
-<text x='90' y='180' font-family='Inter,Arial,sans-serif' font-size='52' font-weight='900' letter-spacing='6' fill='rgba(17,24,39,0.06)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='90' y='360' font-family='Inter,Arial,sans-serif' font-size='52' font-weight='900' letter-spacing='6' fill='rgba(17,24,39,0.06)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='90' y='540' font-family='Inter,Arial,sans-serif' font-size='52' font-weight='900' letter-spacing='6' fill='rgba(17,24,39,0.06)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='90' y='720' font-family='Inter,Arial,sans-serif' font-size='52' font-weight='900' letter-spacing='6' fill='rgba(17,24,39,0.06)'>INTUNEGUARD SOLUTIONS</text>\
-</g>\
-</svg>") !important;
-    background-repeat:repeat !important;
-    background-size:420px 420px !important;
-    background-position:center top !important;
   }
 
   .quote-shell::before{
@@ -514,7 +539,6 @@ button,input,select,textarea{font:inherit}
   }
 
   .quote-header{
-    display:block !important;
     background:#fff !important;
     border-bottom:1px solid var(--paper-line) !important;
     padding:24px 0 18px !important;
@@ -530,7 +554,7 @@ button,input,select,textarea{font:inherit}
     display:flex !important;
     align-items:flex-start !important;
     gap:16px !important;
-    margin-bottom:16px !important;
+    margin-bottom:18px !important;
   }
 
   .brand img{
@@ -542,50 +566,22 @@ button,input,select,textarea{font:inherit}
   }
 
   .quote-meta{
+    display:none !important;
+  }
+
+  .print-meta-row{
     display:block !important;
-    width:100% !important;
-    font-size:0 !important;
-  }
-
-  .meta-card{
-    display:inline-block !important;
-    vertical-align:top !important;
-    width:32% !important;
-    margin:0 2% 0 0 !important;
-    padding:14px 16px !important;
-    background:#fff !important;
-    border:1px solid var(--paper-line) !important;
-    border-radius:14px !important;
-    box-shadow:none !important;
-    backdrop-filter:none !important;
-    page-break-inside:avoid !important;
-    break-inside:avoid !important;
-    font-size:14px !important;
-  }
-
-  .meta-card:last-child{
-    margin-right:0 !important;
-  }
-
-  .meta-title{
-    display:block !important;
-    margin-bottom:6px !important;
-    color:var(--paper-muted) !important;
-    font-size:11px !important;
-    font-weight:700 !important;
-    text-transform:uppercase !important;
-    letter-spacing:.08em !important;
-  }
-
-  .meta-value{
-    display:block !important;
-    color:var(--paper-text) !important;
-    font-size:15px !important;
-    font-weight:800 !important;
+    margin-top:4px !important;
   }
 
   .quote-body{
     padding:22px 0 0 !important;
+  }
+
+  .grid,
+  .signature-grid{
+    break-inside:avoid;
+    page-break-inside:avoid;
   }
 
   .card,
@@ -639,28 +635,40 @@ button,input,select,textarea{font:inherit}
     background:#fff !important;
   }
 
-  .badge{
-    color:#425066 !important;
-    border-color:#d9e1ea !important;
-    background:#fff !important;
+  .print-watermark-block{
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    min-height:0 !important;
+    padding:16px 0 4px !important;
+    pointer-events:none !important;
+    user-select:none !important;
+    overflow:hidden !important;
   }
 
-  .card,
-  .footer-note,
-  .grid,
-  .signature-grid{
-    break-inside:avoid;
-    page-break-inside:avoid;
+  .print-watermark-block span{
+    display:block !important;
+    transform:rotate(-24deg) !important;
+    font-size:34px !important;
+    font-weight:900 !important;
+    letter-spacing:.14em !important;
+    color:rgba(17,24,39,.055) !important;
+    white-space:nowrap !important;
+    line-height:1 !important;
   }
-
-  .print-only{display:block}
 }
 
 @media print and (max-width:980px){
-  .meta-card{
+  .print-meta-table,
+  .print-meta-table tbody,
+  .print-meta-table tr,
+  .print-meta-table td{
     display:block !important;
     width:100% !important;
-    margin:0 0 10px 0 !important;
+  }
+
+  .print-meta-table td{
+    padding:0 0 10px 0 !important;
   }
 }
 </style>
@@ -713,7 +721,34 @@ button,input,select,textarea{font:inherit}
             <div class="meta-value">14 Calendar Days</div>
           </div>
         </div>
+
+        <div class="print-meta-row">
+          <table class="print-meta-table">
+            <tr>
+              <td>
+                <div class="print-meta-box">
+                  <span class="print-meta-title">Quotation ID</span>
+                  <div class="print-meta-value" id="quoteIdPrint">IGS-2026-001</div>
+                </div>
+              </td>
+              <td>
+                <div class="print-meta-box">
+                  <span class="print-meta-title">Issue Date</span>
+                  <div class="print-meta-value" id="issueDatePrint">2026-03-15</div>
+                </div>
+              </td>
+              <td>
+                <div class="print-meta-box">
+                  <span class="print-meta-title">Validity</span>
+                  <div class="print-meta-value">14 Calendar Days</div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
+
+      <div class="print-watermark-block"><span>INTUNEGUARD SOLUTIONS</span></div>
     </div>
 
     <div class="quote-body">
@@ -779,6 +814,8 @@ button,input,select,textarea{font:inherit}
         </div>
       </div>
 
+      <div class="print-watermark-block"><span>INTUNEGUARD SOLUTIONS</span></div>
+
       <div class="grid" style="margin-top:20px;">
         <div class="card avoid-break">
           <h2>Scope of Work</h2>
@@ -817,6 +854,8 @@ button,input,select,textarea{font:inherit}
         </div>
       </div>
 
+      <div class="print-watermark-block"><span>INTUNEGUARD SOLUTIONS</span></div>
+
       <div class="grid" style="margin-top:20px;">
         <div class="card avoid-break">
           <h2>Deliverables</h2>
@@ -840,6 +879,8 @@ button,input,select,textarea{font:inherit}
         </div>
       </div>
 
+      <div class="print-watermark-block"><span>INTUNEGUARD SOLUTIONS</span></div>
+
       <div class="grid" style="margin-top:20px;">
         <div class="card avoid-break">
           <h2>Payment Terms</h2>
@@ -858,6 +899,8 @@ button,input,select,textarea{font:inherit}
         </div>
       </div>
 
+      <div class="print-watermark-block"><span>INTUNEGUARD SOLUTIONS</span></div>
+
       <div class="card avoid-break" style="margin-top:20px;">
         <h2>Approval & Signatures</h2>
         <div class="signature-grid">
@@ -873,6 +916,8 @@ button,input,select,textarea{font:inherit}
       <div class="footer-note avoid-break">
         This quotation is confidential and intended solely for the named recipient. It may not be reproduced, distributed, or shared without prior written authorization from IntuneGuard Solutions.
       </div>
+
+      <div class="print-watermark-block"><span>INTUNEGUARD SOLUTIONS</span></div>
     </div>
   </div>
 </div>
@@ -995,14 +1040,22 @@ const tableServiceAmount = document.getElementById('tableServiceAmount');
 const tableTotal = document.getElementById('tableTotal');
 const issueDate = document.getElementById('issueDate');
 const quoteId = document.getElementById('quoteId');
+const issueDatePrint = document.getElementById('issueDatePrint');
+const quoteIdPrint = document.getElementById('quoteIdPrint');
 
 function setToday() {
   const now = new Date();
   const y = now.getFullYear();
   const m = String(now.getMonth() + 1).padStart(2, '0');
   const d = String(now.getDate()).padStart(2, '0');
-  issueDate.textContent = `${y}-${m}-${d}`;
-  quoteId.textContent = `IGS-${y}-${m}${d}`;
+  const generatedDate = `${y}-${m}-${d}`;
+  const generatedId = `IGS-${y}-${m}${d}`;
+
+  issueDate.textContent = generatedDate;
+  quoteId.textContent = generatedId;
+
+  issueDatePrint.textContent = generatedDate;
+  quoteIdPrint.textContent = generatedId;
 }
 
 function renderList(target, items) {
