@@ -37,16 +37,16 @@
   --paper-line:#d9e1ea;
 
   --print-wm:url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'>\
-<g transform='rotate(-24 450 450)'>\
-<text x='-30' y='100' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='-30' y='210' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='-30' y='320' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='-30' y='430' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='-30' y='540' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='-30' y='650' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='-30' y='760' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
-<text x='-30' y='870' font-family='Arial,sans-serif' font-size='30' font-weight='900' letter-spacing='4' fill='rgba(17,24,39,0.055)'>INTUNEGUARD SOLUTIONS</text>\
+<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='1200' viewBox='0 0 1200 1200'>\
+<g transform='rotate(-24 600 600)'>\
+<text x='-80' y='120' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-80' y='260' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-80' y='400' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-80' y='540' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-80' y='680' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-80' y='820' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-80' y='960' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
+<text x='-80' y='1100' font-family='Arial,sans-serif' font-size='42' font-weight='900' letter-spacing='5' fill='rgba(17,24,39,0.09)'>INTUNEGUARD SOLUTIONS</text>\
 </g>\
 </svg>");
 }
@@ -419,7 +419,7 @@ button,input,select,textarea{font:inherit}
   .topbar-actions{width:100%}
 }
 
-/* ===== PRINT-ONLY PROFESSIONAL LAYOUT ===== */
+/* PRINT VERSION */
 @page{
   size:A4;
   margin:0;
@@ -455,7 +455,7 @@ button,input,select,textarea{font:inherit}
     background-color:#fff !important;
     background-image:var(--print-wm) !important;
     background-repeat:repeat !important;
-    background-size:170px 170px !important;
+    background-size:220px 220px !important;
     background-position:center top !important;
   }
 
@@ -469,50 +469,51 @@ button,input,select,textarea{font:inherit}
     width:100%;
     border-radius:999px;
     background:linear-gradient(90deg, var(--primary), var(--accent));
-    margin-bottom:10px;
+    margin-bottom:12px;
   }
 
   .print-header{
     display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:10px;
+    grid-template-columns:1.18fr .82fr;
+    gap:12px;
     align-items:start;
-    margin-bottom:8px;
+    margin-bottom:10px;
   }
 
   .print-brand{
     display:flex;
-    gap:10px;
+    gap:14px;
     align-items:flex-start;
   }
 
   .print-brand img{
-    width:58px;
-    height:58px;
+    width:92px;
+    height:92px;
     object-fit:cover;
-    border-radius:12px;
+    border-radius:16px;
     border:1px solid #d9e1ea;
     background:#fff;
-    padding:2px;
+    padding:3px;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
   }
 
   .print-brand h1{
-    margin:0 0 4px;
-    font-size:18px;
-    line-height:1.1;
+    margin:0 0 5px;
+    font-size:20px;
+    line-height:1.08;
     font-weight:800;
   }
 
   .print-brand p{
     margin:0;
     color:var(--paper-muted);
-    font-size:11px;
+    font-size:11.5px;
     line-height:1.35;
   }
 
   .print-meta{
     display:grid;
-    gap:6px;
+    gap:7px;
   }
 
   .print-meta-box,
@@ -522,27 +523,28 @@ button,input,select,textarea{font:inherit}
   .print-term-list li,
   .print-sign-box,
   .print-service-box{
-    background:rgba(255,255,255,.82) !important;
+    background:rgba(255,255,255,.80) !important;
+    backdrop-filter:blur(1px) !important;
   }
 
   .print-meta-box{
     border:1px solid var(--paper-line);
     border-radius:10px;
-    padding:8px 10px;
+    padding:9px 11px;
   }
 
   .print-meta-title{
     display:block;
     margin-bottom:3px;
     color:var(--paper-muted);
-    font-size:9px;
+    font-size:9.5px;
     font-weight:700;
     text-transform:uppercase;
     letter-spacing:.08em;
   }
 
   .print-meta-value{
-    font-size:12px;
+    font-size:12.5px;
     font-weight:800;
     color:var(--paper-text);
     line-height:1.15;
@@ -551,7 +553,7 @@ button,input,select,textarea{font:inherit}
   .print-grid-2{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:8px;
+    gap:9px;
   }
 
   .print-card{
@@ -579,7 +581,7 @@ button,input,select,textarea{font:inherit}
   }
 
   .print-form-row label{
-    font-size:10px;
+    font-size:10.5px;
     font-weight:700;
     color:var(--paper-muted);
   }
@@ -590,12 +592,12 @@ button,input,select,textarea{font:inherit}
     border-radius:10px;
     padding:7px 9px;
     font-size:11px;
-    color:#9aa8b7;
-    background:rgba(255,255,255,.88);
+    color:#93a2b2;
+    background:rgba(255,255,255,.92);
   }
 
   .print-field.tall{
-    min-height:48px;
+    min-height:56px;
   }
 
   .print-service-box{
@@ -658,13 +660,13 @@ button,input,select,textarea{font:inherit}
     border:1px solid var(--paper-line);
     border-radius:12px;
     overflow:hidden;
-    background:rgba(255,255,255,.88);
+    background:rgba(255,255,255,.90);
   }
 
   .print-table th{
     text-align:left;
     padding:7px 8px;
-    font-size:9px;
+    font-size:9.5px;
     text-transform:uppercase;
     letter-spacing:.05em;
     background:#f6f8fb;
@@ -682,17 +684,17 @@ button,input,select,textarea{font:inherit}
 
   .print-table tfoot td{
     font-weight:800;
-    background:rgba(255,255,255,.9);
+    background:rgba(255,255,255,.92);
   }
 
   .print-signatures{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:8px;
+    gap:9px;
   }
 
   .print-sign-box{
-    min-height:74px;
+    min-height:84px;
     border:1px dashed #c8d2de;
     border-radius:12px;
     padding:10px;
@@ -702,11 +704,11 @@ button,input,select,textarea{font:inherit}
   }
 
   .print-sign-line{
-    margin-top:10px;
+    margin-top:12px;
     padding-top:7px;
     border-top:1px solid #d5dee8;
     color:var(--paper-muted);
-    font-size:10px;
+    font-size:10.5px;
     line-height:1.2;
   }
 
@@ -715,14 +717,14 @@ button,input,select,textarea{font:inherit}
     border:1px solid var(--paper-line);
     border-radius:12px;
     padding:8px 10px;
-    font-size:10px;
+    font-size:10.5px;
     line-height:1.3;
     color:var(--paper-muted);
   }
 
   .print-stack{
     display:grid;
-    gap:8px;
+    gap:9px;
   }
 }
 </style>
